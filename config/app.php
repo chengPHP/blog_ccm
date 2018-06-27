@@ -182,6 +182,9 @@ return [
         //菜单高亮
         HieuLe\Active\ActiveServiceProvider::class,
 
+        //面包屑
+//        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+
     ],
 
     /*
@@ -235,6 +238,8 @@ return [
 
         //菜单高亮
         'Active' => HieuLe\Active\Facades\Active::class,
+        //面包屑
+//        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

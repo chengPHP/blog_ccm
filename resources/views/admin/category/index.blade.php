@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>个人博客后台</h2>
+            {!! Breadcrumbs::render('category'); !!}
+        </div>
+    </div>
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
