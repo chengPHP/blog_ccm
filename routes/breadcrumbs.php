@@ -1,5 +1,7 @@
 <?php
 
+//面包屑
+
 // 后台首页
 Breadcrumbs::register('home', function ($breadcrumbs) {
     $breadcrumbs->push('后台首页', route('home'));
