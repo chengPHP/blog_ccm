@@ -34,14 +34,14 @@ class ArticleRequest extends FormRequest
             case 'POST':
                 return [
                     'title'=>'required',
-                    'art'=>'required',
+                    'editorValue'=>'required',
                     'status'=>'required',
                 ];
                 break;
             case 'PUT':
                 return [
                     'title'=>'required',
-                    'art'=>'required',
+                    'editorValue'=>'required',
                     'status'=>'required',
                 ];
             case 'PATCH':
@@ -54,7 +54,7 @@ class ArticleRequest extends FormRequest
     {
         return [
             'title.required'=>'请输入文章标题',
-            'art.required'=>'请输入文章内容',
+            'editorValue.required'=>'请输入文章内容',
             'status.required'=>'请选择文章所属状态',
         ];
     }

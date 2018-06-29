@@ -33,13 +33,13 @@ class DiaryRequest extends FormRequest
                 break;
             case 'POST':
                 return [
-                    'art'=>'required',
+                    'editorValue'=>'required',
                     'status'=>'required',
                 ];
                 break;
             case 'PUT':
                 return [
-                    'art'=>'required',
+                    'editorValue'=>'required',
                     'status'=>'required',
                 ];
             case 'PATCH':
@@ -51,7 +51,7 @@ class DiaryRequest extends FormRequest
     public function messages()
     {
         return [
-            'art.required'=>'请输入日记内容',
+            'editorValue.required'=>'请输入日记内容',
             'status.required'=>'请选择日记状态',
         ];
     }

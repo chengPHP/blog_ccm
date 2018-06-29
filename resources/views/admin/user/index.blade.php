@@ -12,8 +12,8 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>用户管理列表</h5>
-                        <a href="{{ url('admin/user/create') }}" data-toggle="modal" data-target=".bs-example-modal-md" class="btn blue " id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        {{--<h5>用户管理列表</h5>--}}
+                        <a href="{{ url('admin/user/create') }}" class="btn btn-m btn-primary" data-toggle="modal" data-target=".bs-example-modal-md" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
                     </div>
                     <div class="ibox-content">
                         <table class="table table-bordered">

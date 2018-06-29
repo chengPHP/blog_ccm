@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('home.index');
+//});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//退出登录
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('admin/home', 'HomeController@index');
 
 
 //后台
@@ -34,4 +38,17 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
     Route::resource('diary','DiaryController');
     //推荐链接管理
     Route::resource('link','LinkController');
+});
+
+//前台
+
+
+
+Route::group(['namespace'=>'Home'],function (){
+    Route::resource('/', 'IndexController');
+    Route::get('diary', 'IndexController@diary')->name('diary');
+    //文章列表页
+    Route::get('article_list/{category_id}', 'IndexController@articleList');
+    //文章详情页
+    Route::get('article_info/{article_id}','IndexController@articleInfo');
 });

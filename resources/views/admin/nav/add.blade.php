@@ -10,16 +10,30 @@
                 <input type="text" name="name" value="" placeholder="导航栏名称" class="form-control">
             </div>
         </div>
+        <div class="hr-line-dashed"></div>
         <div class="form-group"><label class="col-sm-2 control-label">别名</label>
             <div class="col-sm-10">
                 <input type="text" name="alias" value="" placeholder="导航栏别名" class="form-control">
             </div>
         </div>
+        <div class="hr-line-dashed"></div>
         <div class="form-group"><label class="col-sm-2 control-label">超链接</label>
             <div class="col-sm-10">
                 <input type="text" name="url" value="" placeholder="超链接" class="form-control">
             </div>
         </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group"><label class="col-sm-2 control-label">父级类别</label>
+            <div class="col-sm-10">
+                <select class="form-control m-b" name="pid">
+                    <option value="0">请选择</option>
+                    @foreach($nav_list as $v)
+                        <option value="{{$v['id']}}">{{$v['name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
         <div class="form-group"><label class="col-sm-2 control-label">排序</label>
             <div class="col-sm-10">
                 <input type="text" name="orders" value="" placeholder="排序" class="form-control">

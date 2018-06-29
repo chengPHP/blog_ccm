@@ -3,25 +3,25 @@
 //面包屑
 
 // 后台首页
-Breadcrumbs::register('home', function ($breadcrumbs) {
-    $breadcrumbs->push('后台首页', route('home'));
+Breadcrumbs::register('admin/home', function ($breadcrumbs) {
+    $breadcrumbs->push('后台首页', url('admin/home'));
 });
 
 // 后台首页/用户管理
 Breadcrumbs::register('user', function ($breadcrumbs) {
-    $breadcrumbs->parent('home');
+    $breadcrumbs->parent('admin/home');
     $breadcrumbs->push('用户管理', url('admin/user'));
 });
 
 // 后台首页/类别管理
 Breadcrumbs::register('category', function ($breadcrumbs) {
-    $breadcrumbs->parent('home');
+    $breadcrumbs->parent('admin/home');
     $breadcrumbs->push('类别管理', url('admin/category'));
 });
 
 // 后台首页/文章管理
 Breadcrumbs::register('article', function ($breadcrumbs) {
-    $breadcrumbs->parent('home');
+    $breadcrumbs->parent('admin/home');
     $breadcrumbs->push('文章管理', url('admin/article'));
 });
 
@@ -33,13 +33,13 @@ Breadcrumbs::register('articleCreate', function ($breadcrumbs) {
 
 // 后台首页/导航栏管理
 Breadcrumbs::register('nav', function ($breadcrumbs) {
-    $breadcrumbs->parent('home');
+    $breadcrumbs->parent('admin/home');
     $breadcrumbs->push('导航栏管理', url('admin/nav'));
 });
 
 // 后台首页/日记管理
 Breadcrumbs::register('diary', function ($breadcrumbs) {
-    $breadcrumbs->parent('home');
+    $breadcrumbs->parent('admin/home');
     $breadcrumbs->push('日记管理', url('admin/diary'));
 });
 
@@ -51,6 +51,6 @@ Breadcrumbs::register('diaryCreate', function ($breadcrumbs) {
 
 // 后台首页/推荐链接管理
 Breadcrumbs::register('link', function ($breadcrumbs) {
-    $breadcrumbs->parent('home');
+    $breadcrumbs->parent('admin/home');
     $breadcrumbs->push('推荐链接管理', url('admin/link'));
 });

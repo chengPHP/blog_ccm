@@ -17,7 +17,7 @@ class DiaryController extends Controller
      */
     public function index()
     {
-        $list = Diary::where("status",">=",0)->with('user')->get();
+        $list = Diary::where("status",">=",0)->with('user')->paginate(8);
         return view('admin.diary.index',compact('list'));
     }
 

@@ -1,7 +1,7 @@
 {{--菜单栏--}}
 {{--<li class="active">--}}
-<li class="{{ active_class(if_uri_pattern('home')) }}">
-    <a href="{{url('/home')}}"><i class="fa fa-desktop"></i> <span class="nav-label">控制面板</span></a>
+<li class="{{ active_class(if_uri_pattern('admin/home')) }}">
+    <a href="{{url('admin/home')}}"><i class="fa fa-desktop"></i> <span class="nav-label">控制面板</span></a>
 </li>
 <li class="{{ active_class(if_uri_pattern('admin/user*')) }}">
     <a href="{{url('admin/user')}}"><i class="fa fa-address-card-o"></i> <span class="nav-label">用户管理</span></a>

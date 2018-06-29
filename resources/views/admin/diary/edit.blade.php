@@ -12,9 +12,8 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>日记管理列表</h5>
-                        <a href="{{ url('admin/diary/create') }}" data-toggle="modal" data-target=".bs-example-modal-lg" class="btn blue " id="add-btn"><i class="fa fa-plus"></i> 添加</a>
-                        {{--                        <a href="{{ url('admin/article/create') }}"  class="btn blue " id="add-btn"><i class="fa fa-plus"></i> 添加</a>--}}
+                        {{--<h5>日记管理列表</h5>--}}
+                        <a href="{{ url('admin/diary/create') }}" data-toggle="modal" data-target=".bs-example-modal-lg" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
                     </div>
                     <div class="ibox-content">
                         <form method="post" class="form-horizontal" action="{{url('admin/diary')}}/{{$info->id}}">

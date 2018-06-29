@@ -4,7 +4,7 @@
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
             <h2>个人博客后台</h2>
-            {!! Breadcrumbs::render('home'); !!}
+            {!! Breadcrumbs::render('admin/home'); !!}
         </div>
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">

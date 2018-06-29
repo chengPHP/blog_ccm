@@ -12,8 +12,8 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>导航栏管理列表</h5>
-                        <a href="{{ url('admin/nav/create') }}" data-toggle="modal" data-target=".bs-example-modal-md" class="btn blue " id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        {{--<h5>导航栏管理列表</h5>--}}
+                        <a href="{{ url('admin/nav/create') }}" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
                     </div>
                     <div class="ibox-content">
                         <table class="table table-bordered">
@@ -24,6 +24,7 @@
                                     <th>导航栏名称</th>
                                     <th>导航栏别名</th>
                                     <th>超链接</th>
+                                    <th>父级菜单</th>
                                     <th>排序</th>
                                     <th>设置</th>
                                 </tr>
@@ -42,6 +43,7 @@
                                         <td>{{$v['name']}}</td>
                                         <td>{{$v['alias']}}</td>
                                         <td><a href="{{url($v['url'])}}" target="_blank" >{{url($v['url'])}}</a></td>
+                                        <td>{{$v['pid']}}</td>
                                         <td>{{$v['orders']}}</td>
                                         <td>
                                             <span title="修改信息" onclick="updateNav('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench" style="font-size: 24px;"></i> </span>

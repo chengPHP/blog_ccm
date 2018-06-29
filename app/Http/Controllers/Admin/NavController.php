@@ -30,7 +30,11 @@ class NavController extends Controller
      */
     public function create()
     {
-        return view('admin.nav.add');
+        $map = [
+            ['status',">=",0]
+        ];
+        $nav_list = Nav::where($map)->get();
+        return view('admin.nav.add',compact('nav_list'));
     }
 
     /**
@@ -47,6 +51,12 @@ class NavController extends Controller
         $nav->url = $request->url;
         $nav->orders = $request->orders;
         $nav->status = $request->status;
+
+        if($request->pid!=0){
+            $nav->pid = $request->pid;
+            $parent_path = Nav::where("id",$request->pid)->value("path");
+            $nav->path = $parent_path.$nav->pid.',';
+        }
 
         $info = $nav->save();
         if($info){
@@ -83,7 +93,11 @@ class NavController extends Controller
     public function edit($id)
     {
         $info = Nav::find($id);
-        return view('admin.nav.edit',compact('info'));
+        $map = [
+            ['status',">=",0]
+        ];
+        $nav_list = Nav::where($map)->get();
+        return view('admin.nav.edit',compact('info','nav_list'));
     }
 
     /**
@@ -102,6 +116,14 @@ class NavController extends Controller
             'orders' => $request->orders,
             'status' => $request->status,
         ];
+        if($request->pid){
+            $arr['pid'] = $request->pid;
+            $parent_path = Nav::where('id',$request->pid)->value('path');
+            $arr['path'] = $parent_path.$request->pid.',';
+        }else{
+            $arr['pid'] = 0;
+            $arr['path'] = '0,';
+        }
         if(Nav::where('id',$id)->update($arr)){
             $message = [
                 'code' => 1,
