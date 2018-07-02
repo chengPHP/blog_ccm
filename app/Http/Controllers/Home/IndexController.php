@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Diary;
 use App\Models\Link;
 use App\Models\Nav;
@@ -35,12 +36,20 @@ class IndexController extends Controller
     public function articleList($category_id)
     {
         $map = [
-            ['status', '>=', 0],
-            ['category_id', '=', $category_id]
+            ['status', '>', 0]
         ];
-        $list = Article::where($map)->orderBy('created_at', 'asc')->get();
-        if (count($list) > 0) {
-            return view('home.article_list', compact('list'));
+        $list = Article::where($map)->where('category_id', $category_id)->with('user','category')->orderBy('created_at', 'desc')->paginate(10);
+
+        if (count($list) >= 0) {
+            //文章类别
+            $article_category = Category::where($map)->get();
+            //最新文章
+            $article_new = Article::where($map)->orderBy('created_at', 'desc')->limit(5)->get();
+            //最近热文
+            $article_hot = Article::where($map)->orderBy('read_num', 'desc')->limit(5)->get();
+            //友情链接
+            $link_list = Link::where($map)->orderBy('orders', 'asc')->limit(5)->get();
+            return view('home.article_list', compact('list', 'article_category', 'article_new', 'article_hot', 'link_list'));
         } else {
             return view('home.404');
         }
@@ -50,17 +59,31 @@ class IndexController extends Controller
     public function articleInfo($id)
     {
         $map = [
-            'status' => 1,
-            'id' => $id
+            'status' => 1
         ];
-        $info = Article::where($map)->first();
+        $info = Article::where($map)->where('id',$id)->with('user','category')->first();
         if ($info) {
-            //上一篇
-            $prev_article = Article::where([['id','<',$id],['status','=',1]])->orderBy('id','desc')->fitst();
+            if($id!=1){
+                //上一篇
+                $prev_article = Article::where([['id','<',$id],['status','=',1]])->orderBy('id','desc')->first();
+            }else{
+                $prev_article = null;
+            }
             //下一篇
             $next_article = Article::where([['id','>',$id],['status','=',1]])->orderBy('id','asc')->first();
+            if(!$next_article){
+                $next_article = null;
+            }
             Article::where('id', $id)->update(['read_num' => $info->read_num + 1]);
-            return view('home.article_view', compact('info','prev_article','next_article'));
+
+            //文章类别
+            $article_category = Category::where($map)->get();
+            //最新文章
+            $article_new = Article::where($map)->orderBy('created_at', 'desc')->limit(5)->get();
+            //最近热文
+            $article_hot = Article::where($map)->orderBy('read_num', 'desc')->limit(5)->get();
+
+            return view('home.article_view', compact('info','prev_article','next_article', 'article_category', 'article_new', 'article_hot'));
         } else {
             return view('home.404');
         }
