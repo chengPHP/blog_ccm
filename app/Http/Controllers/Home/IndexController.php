@@ -99,5 +99,14 @@ class IndexController extends Controller
         return view('home.diary', compact('list'));
     }
 
+    //关于我
+    public function aboutMe(){
+        return view('home.about_me');
+    }
+
+    //关于博客
+    public function aboutBlog(){
+        return view('home.about_blog');
+    }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,7 @@ class HomeController extends Controller
     {
 //        return view('home');
 //        return view('layouts.admin');
+//        dd(Auth::user()->hasRole('super admin'));
         return view('admin.index');
     }
 }

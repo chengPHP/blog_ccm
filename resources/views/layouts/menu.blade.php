@@ -33,3 +33,15 @@
 <li class="{{ active_class(if_uri_pattern('admin/link*')) }}">
     <a href="{{url('admin/link')}}"><i class="fa fa-link"></i> <span class="nav-label">推荐链接管理</span></a>
 </li>
+
+<li class="{{ active_class(if_uri_pattern('admin/feedback*')) }}">
+    <a href="{{url('admin/feedback')}}"><i class="fa fa-link"></i> <span class="nav-label">留言管理</span></a>
+</li>
+
+<li class="{{ active_class(if_uri_pattern('admin/diary*')) }}">
+    <a href="{{url('admin/diary')}}"><i class="fa fa-pencil-square-o"></i> <span class="nav-label">关于</span> <span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li class="{{ active_class(if_uri('admin/diary')) }}"><a href="{{url('admin/diary')}}"><i class="fa fa-book" ></i> <span class="nav-label">关于我</span></a></li>
+        <li class="{{ active_class(if_uri('admin/diary/create')) }}"><a href="{{url('admin/diary/create')}}"><i class="fa fa-pencil-square-o" ></i> <span class="nav-label">关于博客</span></a></li>
+    </ul>
+</li>

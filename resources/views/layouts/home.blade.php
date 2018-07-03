@@ -39,9 +39,9 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">关于</a>
                 <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="./about_lzcms.html">关于我</a></dd>
-                    {{--<dd><a href="./about_lzcms.html">关于Lz_CMS</a></dd>--}}
-                    {{--<dd><a href="./feedback.html">留言</a></dd>--}}
+                    <dd><a href="{{route('about_me')}}">关于我</a></dd>
+                    <dd><a href="{{route('about_blog')}}">关于博客</a></dd>
+                    <dd><a href="./feedback.html">留言</a></dd>
                 </dl>
             </li>
         </ul>
@@ -89,9 +89,9 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">关于</a>
                 <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="./about_lzcms.html">关于我</a></dd>
-                    {{--<dd><a href="./about_lzcms.html">关于Lz_CMS</a></dd>--}}
-                    {{--<dd><a href="./feedback.html">留言</a></dd>--}}
+                    <dd><a href="{{route('about_me')}}">关于我</a></dd>
+                    <dd><a href="{{route('about_blog')}}">关于博客</a></dd>
+                    <dd><a href="./feedback.html">留言</a></dd>
                 </dl>
             </li>
         </ul>

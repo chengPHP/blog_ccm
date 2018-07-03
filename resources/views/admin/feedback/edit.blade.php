@@ -4,7 +4,7 @@
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
             <h2>个人博客后台</h2>
-            {!! Breadcrumbs::render('diary'); !!}
+            {!! Breadcrumbs::render('feedback'); !!}
         </div>
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
@@ -13,17 +13,17 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{--<h5>日记管理列表</h5>--}}
-                        <a href="{{ url('admin/diary/create') }}" data-toggle="modal" data-target=".bs-example-modal-lg" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        <a href="{{ url('admin/feedback/create') }}" data-toggle="modal" data-target=".bs-example-modal-lg" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
                     </div>
                     <div class="ibox-content">
-                        <form method="post" class="form-horizontal" action="{{url('admin/diary')}}/{{$info->id}}">
+                        <form method="post" class="form-horizontal" action="{{url('admin/feedback')}}/{{$info->id}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <input type="hidden" name="_method" value="PUT">
-                            <div class="form-group"><label class="col-sm-2 control-label">日记内容</label>
+                            <div class="form-group"><label class="col-sm-2 control-label">留言内容</label>
                                 <div class="col-sm-10">
                                     <script id="editor" type="text/plain" style="width:100%;height:200px;">
                                         @php
-                                            echo $info->art;
+                                            echo $info->content;
                                         @endphp
                                     </script>
                                     <script type="text/javascript">
@@ -62,7 +62,7 @@
     function tijiao() {
         $.ajax({
             type: "post",
-            url: "{{url('admin/diary')}}/{{$info->id}}",
+            url: "{{url('admin/feedback')}}/{{$info->id}}",
             data: $('.form-horizontal').serialize(),
             dataType:"json",
             success: function (data) {
@@ -86,7 +86,7 @@
     }
 
     function fanhui() {
-        window.location.href="{{url('admin/diary')}}";
+        window.location.href="{{url('admin/feedback')}}";
     }
 
 </script>

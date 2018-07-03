@@ -185,6 +185,9 @@ return [
         //面包屑
 //        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
+        //entrust
+        Zizaco\Entrust\EntrustServiceProvider::class,
+
     ],
 
     /*
@@ -240,6 +243,9 @@ return [
         'Active' => HieuLe\Active\Facades\Active::class,
         //面包屑
 //        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+
+        //entrust
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
     ],
 
 ];

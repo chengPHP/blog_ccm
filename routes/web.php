@@ -38,6 +38,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
     Route::resource('diary','DiaryController');
     //推荐链接管理
     Route::resource('link','LinkController');
+    //留言管理
+    Route::resource('feedback','FeedbackController');
+    Route::get('feedback/reply/{id}','FeedbackController@reply');
+    Route::post('feedback/reply_store','FeedbackController@replyStore');
 });
 
 //前台
@@ -51,4 +55,8 @@ Route::group(['namespace'=>'Home'],function (){
     Route::get('article_list/{category_id}', 'IndexController@articleList');
     //文章详情页
     Route::get('article_info/{article_id}','IndexController@articleInfo');
+    //关于我
+    Route::get('about_me','IndexController@aboutMe')->name('about_me');
+    //关于博客
+    Route::get('about_blog','IndexController@aboutBlog')->name('about_blog');
 });

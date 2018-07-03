@@ -54,3 +54,9 @@ Breadcrumbs::register('link', function ($breadcrumbs) {
     $breadcrumbs->parent('admin/home');
     $breadcrumbs->push('推荐链接管理', url('admin/link'));
 });
+
+// 后台首页/留言管理
+Breadcrumbs::register('feedback', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin/home');
+    $breadcrumbs->push('留言管理', url('admin/feedback'));
+});
