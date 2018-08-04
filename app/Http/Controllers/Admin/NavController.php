@@ -19,7 +19,7 @@ class NavController extends Controller
         $map = [
             ['status','>=','0'],
         ];
-        $list = Nav::where($map)->orderBy("orders",'asc')->get();
+        $list = Nav::where($map)->orderBy("orders",'asc')->paginate(config("program.PAGE_SIZE"));
         return view('admin.nav.index',compact('list'));
     }
 
@@ -146,25 +146,34 @@ class NavController extends Controller
      */
     public function destroy($id)
     {
-        $info = Nav::find($id);
-        if($info){
-            if(Nav::where('id',$id)->update(['status' => -1])){
+        //把ids字符串拆分成数组
+        $idArr = explode(",",$id);
+        foreach ($idArr as $v){
+            $info = Nav::where('pid',$v)->first();
+            if($info){
                 $message = [
-                    'code' => 1,
-                    'message' => '导航栏删除成功'
+                    'code' => 0,
+                    'message' => '此菜单下面还有子菜单，不能删除'
                 ];
-            }else{
-                $message = [
-                    'code' => 1,
-                    'message' => '导航栏删除失败，请稍后重试'
-                ];
+                return response()->json($message);
+            }else {
+                if (Nav::where('id', $v)->update(["status"=>-1])) {
+                    continue;
+                }else{
+                    $message = [
+                        'code' => 0,
+                        'message' => '此菜单下面还有子菜单，不能删除'
+                    ];
+                    return response()->json($message);
+                }
             }
-        }else{
-            $message = [
-                'code' => 0,
-                'message' => '请输入有效数据进行操作'
-            ];
+
         }
+        $message = [
+            'code' => 1,
+            'message' => '导航栏删除成功'
+        ];
         return response()->json($message);
+
     }
 }

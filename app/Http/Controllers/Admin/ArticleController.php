@@ -18,8 +18,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $list = Article::with('user','category')->get();
-//        dd($list);
+        $list = Article::with('user','category','files')->paginate(config("program.PAGE_SIZE"));
         return view('admin.article.index',compact('list'));
     }
 
@@ -51,6 +50,9 @@ class ArticleController extends Controller
         $article->user_id = Auth::user()->id;
         $article->status = $request->status;
         $info = $article->save();
+
+        $article->files()->sync($request->file);
+
         if($info){
             $message = [
                 'code' => 1,
@@ -132,6 +134,25 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //把ids字符串拆分成数组
+        $idArr = explode(",",$id);
+        foreach ($idArr as $v){
+            $info1 = Article::where('id',$v)->update(['status'=>-1]);
+            if($info1){
+                continue;
+            }else{
+                $message = [
+                    'code' => 0,
+                    'message' => '文章信息删除失败，请稍后重试'
+                ];
+                return response()->json($message);
+            }
+        }
+        $message = [
+            'code' => 1,
+            'message' => '文章信息删除成功'
+        ];
+
+        return response()->json($message);
     }
 }

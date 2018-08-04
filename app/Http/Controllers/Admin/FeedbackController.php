@@ -18,7 +18,7 @@ class FeedbackController extends Controller
         $map = [
             ['status', '>=', 0]
         ];
-        $list = Feedback::where($map)->paginate(10);
+        $list = Feedback::where($map)->paginate(config("program.PAGE_SIZE"));
         return view('admin.feedback.index',compact('list'));
     }
 
@@ -148,21 +148,33 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-        $map = [
-            'id'=>$id
-        ];
-        $info = Feedback::where($map)->update(['status'=>-1]);
-        if($info){
-            $message = [
-                'code' => 1,
-                'message' => '删除成功'
-            ];
-        }else{
-            $message = [
-                'code' => 0,
-                'message' => '删除失败，请稍后重试'
-            ];
+
+        //把ids字符串拆分成数组
+        $idArr = explode(",",$id);
+        foreach ($idArr as $v){
+            if(Feedback::where('pid',$v)->first()){
+                $message = [
+                    'code' => 0,
+                    'message' => '此留言下面还有回复留言，不能删除'
+                ];
+                return response()->json($message);
+            }else {
+                if (Feedback::where('id', $v)->update(["status"=>-1])) {
+                    continue;
+                }else{
+                    $message = [
+                        'code' => 0,
+                        'message' => '此留言下面还有回复留言，不能删除'
+                    ];
+                    return response()->json($message);
+                }
+            }
+
         }
+        $message = [
+            'code' => 1,
+            'message' => '留言信息删除成功'
+        ];
         return response()->json($message);
     }
 }

@@ -14,6 +14,12 @@
     <link href="{{asset('admin/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
 
+    <!-- webuploader -->
+    <link href="{{asset('admin/js/plugins/webuploader/webuploader.css')}}" rel="stylesheet">
+
+    {{--图片预览--}}
+    <link href="{{asset('admin/js/plugins/lightbox2/dist/css/lightbox.min.css')}}" rel="stylesheet">
+
     <script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>
     <script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
 
@@ -24,13 +30,15 @@
     {{--custom--}}
     <script src="{{asset('admin/js/custom.js')}}" ></script>
 
-
     {{--百度编辑器--}}
     <script type="text/javascript" charset="utf-8" src="{{asset('admin/js/plugins/ueditor/ueditor.config.js')}}"></script>
     <script type="text/javascript" charset="utf-8" src="{{asset('admin/js/plugins/ueditor/ueditor.all.min.js')}}"> </script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="{{asset('admin/js/plugins/ueditor/lang/zh-cn/zh-cn.js')}}"></script>
+
+    {{--图片预览--}}
+    <script src="{{asset('admin/js/plugins/lightbox2/dist/js/lightbox.min.js')}}" ></script>
 
 </head>
 
@@ -280,6 +288,8 @@
 
 <script src="{{asset('admin/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
+<!-- webuploader -->
+<script type="text/javascript" src="{{asset('admin/js/plugins/webuploader/webuploader.min.js')}}"></script>
 
 </body>
 

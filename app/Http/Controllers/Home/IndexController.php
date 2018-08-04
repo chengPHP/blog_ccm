@@ -10,7 +10,7 @@ use App\Models\Nav;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+class IndexController extends CommonController
 {
     /**
      * Display a listing of the resource.

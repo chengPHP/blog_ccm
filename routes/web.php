@@ -55,8 +55,17 @@ Route::group(['namespace'=>'Home'],function (){
     Route::get('article_list/{category_id}', 'IndexController@articleList');
     //文章详情页
     Route::get('article_info/{article_id}','IndexController@articleInfo');
+    Route::post('diary','IndexController@diary');
     //关于我
     Route::get('about_me','IndexController@aboutMe')->name('about_me');
     //关于博客
     Route::get('about_blog','IndexController@aboutBlog')->name('about_blog');
+});
+
+//文件管理模块路由开始
+//-------------------------------------------------------------------------
+Route::group(['prefix' => 'file', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
+    Route::post('image_upload', 'FileController@imageUpload')->name('image.upload');
+    Route::post('file_upload', 'FileController@fileUpload')->name('file.upload');
+    Route::post('video_upload', 'FileController@videoUpload')->name('video.upload');
 });

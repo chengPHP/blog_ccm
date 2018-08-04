@@ -1,6 +1,21 @@
 @extends('layouts.home')
 
 @section('content')
+
+    <style type="text/css">
+        body{ font-family:"微软雅黑", Arial, sans-serif;} #main{border:none; background:none;}
+        body,ul,li,h1,h2,h3,p,form{margin:0;padding:0;}body{background:#fbfbfb;color:#444;font-size:14px;}
+        a{color:#444;text-decoration:none;}a:hover{color:red;}
+
+        /* tagscloud */
+        #tagscloud{width:250px;height:260px;position:relative;font-size:12px;color:#333;margin:20px auto 0;text-align:center;}
+        #tagscloud a{position:absolute;top:0px;left:0px;color:#333;font-family:Arial;text-decoration:none;margin:0 10px 15px 0;line-height:18px;text-align:center;font-size:12px;padding:1px 5px;display:inline-block;border-radius:3px;}
+        #tagscloud a.tagc1{background:#666;color:#fff;}
+        #tagscloud a.tagc2{background:#F16E50;color:#fff;}
+        #tagscloud a.tagc5{background:#006633;color:#fff;}
+        #tagscloud a:hover{color:#fff;background:#0099ff;}
+    </style>
+
     <!-- banner 开始 -->
     <div class="banner">
         {{--<div class="main index_main">--}}
@@ -60,7 +75,7 @@
             {{$article_list->links()}}
         </div>
         <div class="page_right">
-            <div class="about_stationmaster_container">
+            <!--<div class="about_stationmaster_container">
                 <h3>博主信息</h3>
                 <ol class="page_right_list trans_3">
                     <li>姓名：张丹峰</li>
@@ -68,7 +83,7 @@
                     <li>座右铭：业精于请、学无止境、工匠精神</li>
                     <li>QQ群：602099721</li>
                 </ol>
-            </div>
+            </div>-->
             <div class="new_list">
                 <h3>最新文章</h3>
                 <ol class="page_right_list trans_3">
@@ -95,8 +110,88 @@
                     <a href="{{$v['url']}}" title="{{$v['title']}}" target="_blank">{{$v['name']}}</a>
                 @endforeach
             </div>
+
+            <h3>热门标签</h3>
+            <div class="links trans_3">
+                <div id="tagscloud">
+                    <a href="http://www.jinliniuan.com/" class="tagc1">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">资源共享</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">2016</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">资源共享</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">2016</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">资源共享</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">2016</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">资源共享</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">2016</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">资源共享</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">2016</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc1">资源共享</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">互联网</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">金林苑</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">2016</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc5">编程之道</a>
+                    <a href="http://www.jinliniuan.com/" class="tagc2">互联网</a>
+                </div>
+            </div>
+
         </div>
         <div class="clear"></div>
     </div>
     <!-- 文章 结束 -->
+    <script type="text/javascript" src="{{asset('admin/js/plugins/tagscloud/tagscloud.js')}}"></script>
 @endsection

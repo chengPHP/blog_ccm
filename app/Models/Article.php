@@ -14,4 +14,8 @@ class Article extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function files(){
+        return $this->belongsToMany('App\Models\File');
+    }
 }

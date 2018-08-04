@@ -18,32 +18,20 @@
     <div class="main index_main">
         <a class="logo" href="{{url('/')}}"><img src="{{asset('home/images/logo.png')}}" alt="老张博客前台模版"></a>
         <ul class="layui-nav" lay-filter="top_nav">
-            <li class="layui-nav-item home"><a href="{{url('/')}}">首页</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">学无止境</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="{{url('article_list/1')}}">PHP</a></dd>
-                    <dd><a href="{{url('article_list/2')}}">WEB前端</a></dd>
-                </dl>
-            </li>
-            {{--<li class="layui-nav-item">--}}
-                {{--<a href="javascript:;">分享无价</a>--}}
-                {{--<dl class="layui-nav-child"> <!-- 二级菜单 -->--}}
-                    {{--<dd><a href="./case_list.html">源码分享</a></dd>--}}
-                    {{--<dd><a href="./case_list.html">jQuery特效</a></dd>--}}
-                {{--</dl>--}}
-            {{--</li>--}}
-            <li class="layui-nav-item">
-                <a href="{{route('diary')}}">日记</a>
-            </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">关于</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="{{route('about_me')}}">关于我</a></dd>
-                    <dd><a href="{{route('about_blog')}}">关于博客</a></dd>
-                    <dd><a href="./feedback.html">留言</a></dd>
-                </dl>
-            </li>
+            @foreach($navs as $k=>$v)
+                @if(!empty($v["_child"]))
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">{{$v['name']}}</a>
+                        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                            @foreach($v['_child'] as $k1=>$v1)
+                                <dd><a href="{{url($v1['url'])}}">{{$v1['name']}}</a></dd>
+                            @endforeach
+                        </dl>
+                    </li>
+                @else
+                    <li class="layui-nav-item home"><a href="{{url($v['url'])}}">{{$v['name']}}</a></li>
+                @endif
+            @endforeach
         </ul>
         <div class="title">老张博客前台模版</div>
         <form action="" mothod="post" class="head_search trans_3 layui-form">
@@ -68,32 +56,21 @@
 <div class="layui-side layui-bg-black left_nav trans_2">
     <div class="layui-side-scroll">
         <ul class="layui-nav layui-nav-tree"  lay-filter="left_nav">
-            <li class="layui-nav-item home"><a href="{{url('/')}}">首页</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">学无止境</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="{{url('article_list/1')}}">PHP</a></dd>
-                    <dd><a href="{{url('article_list/2')}}">WEB前端</a></dd>
-                </dl>
-            </li>
-            {{--<li class="layui-nav-item">--}}
-                {{--<a href="javascript:;">分享无价</a>--}}
-                {{--<dl class="layui-nav-child"> <!-- 二级菜单 -->--}}
-                    {{--<dd><a href="./case_list.html">源码分享</a></dd>--}}
-                    {{--<dd><a href="./case_list.html">jQuery特效</a></dd>--}}
-                {{--</dl>--}}
-            {{--</li>--}}
-            <li class="layui-nav-item">
-                <a href="{{route('diary')}}">日记</a>
-            </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">关于</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="{{route('about_me')}}">关于我</a></dd>
-                    <dd><a href="{{route('about_blog')}}">关于博客</a></dd>
-                    <dd><a href="./feedback.html">留言</a></dd>
-                </dl>
-            </li>
+            @foreach($navs as $k=>$v)
+                @if(!empty($v['_child']))
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">{{$v['name']}}</a>
+                        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                            @foreach($v['_child'] as $k1=>$v1)
+                                <dd><a href="{{url($v1['url'])}}">{{$v1['name']}}</a></dd>
+                            @endforeach
+                        </dl>
+                    </li>
+                @else
+                    <li class="layui-nav-item home"><a href="{{url($v['url'])}}">{{$v['name']}}</a></li>
+                @endif
+
+            @endforeach
         </ul>
     </div>
 </div>

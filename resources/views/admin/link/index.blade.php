@@ -14,11 +14,13 @@
                     <div class="ibox-title">
                         {{--<h5>推荐链接管理</h5>--}}
                         <a href="{{ url('admin/link/create') }}" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        <button onclick="delLinks()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
                     </div>
                     <div class="ibox-content">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th><input type="checkbox" onclick="sltAll(this)" ></th>
                                     <th>id</th>
                                     <th>状态</th>
                                     <th>链接名称</th>
@@ -31,6 +33,7 @@
                             <tbody>
                                 @foreach($list as $v)
                                     <tr>
+                                        <td><input type="checkbox" value="{{$v['id']}}"></td>
                                         <td>{{$v['id']}}</td>
                                         <td>
                                             @if($v['status']==0)
@@ -51,7 +54,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-{{--                        {{$list->links()}}--}}
+                        {{$list->links()}}
                     </div>
                 </div>
             </div>
@@ -73,9 +76,18 @@
             });
         }
 
-        function deleteLink(id) {
+        //全选/全不选
+        function sltAll(object) {
+            if(object.checked){
+                $("table tbody input[type=checkbox]").attr("checked",true);
+            }else{
+                $("table tbody input[type=checkbox]").attr("checked",false);
+            }
+        }
+
+        function deleteItems(ids,url,title) {
             swal({
-                    title: "确定删除该推荐链接吗？",
+                    title: title,
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
@@ -85,7 +97,7 @@
                 },
                 function(){
                     $.ajax({
-                        url: "{{url('admin/link')}}"+'/'+id,
+                        url: url+'/'+ids,
                         type: 'POST',
                         dataType: 'json',
                         data: {
@@ -100,7 +112,16 @@
                                     title: "",
                                     text: data.message,
                                     type: "success",
-                                    timer: 1000,
+                                    timer: 1000
+                                },function () {
+                                    window.location.reload();
+                                });
+                            }else if (data.code==0){
+                                swal({
+                                    title: "",
+                                    text: data.message,
+                                    type: 'error',
+                                    confirmButtonText: "确定"
                                 },function () {
                                     window.location.reload();
                                 });
@@ -110,6 +131,24 @@
                 });
         }
 
+        function deleteLink(id) {
+            deleteItems(id,"{{url('admin/link')}}","确定删除该链接吗？");
+        }
+
+        function delLinks() {
+            var checkStatus = $("tbody input[type='checkbox']:checked");
+            if(checkStatus.length >= 1){
+                var ids = [];
+                $.each(checkStatus,function(i,v){
+                    ids.push(v.value);
+                });
+                ids = ids.toString();
+                deleteItems(ids,"{{url('admin/link')}}","确定删除该些链接吗？");
+
+            }else{
+                swal("请选择至少一条数据！", "", "warning");
+            }
+        }
     </script>
 
 @endsection

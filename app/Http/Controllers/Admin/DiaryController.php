@@ -17,7 +17,7 @@ class DiaryController extends Controller
      */
     public function index()
     {
-        $list = Diary::where("status",">=",0)->with('user')->paginate(8);
+        $list = Diary::where("status",">=",0)->with('user')->paginate(config("program.PAGE_SIZE"));
         return view('admin.diary.index',compact('list'));
     }
 
@@ -115,18 +115,24 @@ class DiaryController extends Controller
      */
     public function destroy($id)
     {
-        $info = Diary::where("id",$id)->update(['status'=>-1]);
-        if($info){
-            $message = [
-                'code' => 1,
-                'message' => '日记信息删除成功'
-            ];
-        }else{
-            $message = [
-                'code' => 0,
-                'message' => '日记信息删除失败，请稍后重试'
-            ];
+        //把ids字符串拆分成数组
+        $idArr = explode(",",$id);
+        foreach ($idArr as $v) {
+            $info = Diary::where("id", $v)->update(['status' => -1]);
+            if ($info) {
+                continue;
+            } else {
+                $message = [
+                    'code' => 0,
+                    'message' => '日记信息删除失败，请稍后重试'
+                ];
+                return response()->json($message);
+            }
         }
+        $message = [
+            'code' => 1,
+            'message' => '日记信息删除成功'
+        ];
         return response()->json($message);
     }
 }

@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $list = Category::paginate(1);
+        $list = Category::paginate(config("program.PAGE_SIZE"));
         return view('admin.category.index',compact('list'));
     }
 
@@ -132,29 +132,34 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $info = Category::where('pid',$id)->first();
+        //把ids字符串拆分成数组
+        $idArr = explode(",",$id);
         $message = [];
-        if($info){
-            $message = [
-                'code' => 0,
-                'message' => '此类别下面还有子类别，不能删除'
-            ];
-        }else{
-            if(Article::where('category_id',$id)->first()){
+        foreach ($idArr as $v){
+            $info = Category::where('pid',$v)->first();
+            if($info){
                 $message = [
                     'code' => 0,
                     'message' => '此类别下面还有子类别，不能删除'
                 ];
             }else{
-                $info1 = Category::where('id',$id)->delete();
-                if($info1){
+                if(Article::where('category_id',$v)->first()){
                     $message = [
-                        'code' => 1,
-                        'message' => '类别信息删除成功'
+                        'code' => 0,
+                        'message' => '此类别下面还有文章，不能删除'
                     ];
+                }else{
+                    $info1 = Category::where('id',$v)->update(['status'=>-1]);
+                    if($info1){
+                        $message = [
+                            'code' => 1,
+                            'message' => '类别信息删除成功'
+                        ];
+                    }
                 }
             }
         }
+
         return response()->json($message);
     }
 }

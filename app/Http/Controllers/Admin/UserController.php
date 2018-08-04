@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $list = User::where('status',">=",0)->paginate(1);
+        $list = User::where('status',">=",0)->paginate(config("program.PAGE_SIZE"));
         return view("admin.user.index",compact('list'));
     }
 
@@ -125,18 +125,24 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $info = User::where('id',$id)->update(['status' => -1]);
-        if($info){
-            $message = [
-                'code' => 1,
-                'message' => '删除成功'
-            ];
-        }else{
-            $message = [
-                'code' => 0,
-                'message' => '删除失败，请稍后重试'
-            ];
+        //把ids字符串拆分成数组
+        $idArr = explode(",",$id);
+        foreach ($idArr as $v) {
+            $info = User::where('id', $v)->update(['status' => -1]);
+            if ($info) {
+                continue;
+            } else {
+                $message = [
+                    'code' => 0,
+                    'message' => '用户删除失败，请稍后重试'
+                ];
+                return response()->json($message);
+            }
         }
+        $message = [
+            'code' => 1,
+            'message' => '用户删除成功'
+        ];
         return response()->json($message);
     }
 }

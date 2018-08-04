@@ -19,7 +19,7 @@ class LinkController extends Controller
         $map = [
             ['status',">=",0]
         ];
-        $list = Link::where($map)->get();
+        $list = Link::where($map)->paginate(config("program.PAGE_SIZE"));
         return view('admin.link.index',compact('list'));
     }
 
@@ -116,17 +116,24 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        if(Link::where('id',$id)->update(['status'=>-1])){
-            $message = [
-                'code' => 1,
-                'message' => '推荐链接删除成功'
-            ];
-        }else{
-            $message = [
-                'code' => 0,
-                'message' => '推荐链接删除失败，请稍后重试'
-            ];
+        //把ids字符串拆分成数组
+        $idArr = explode(",",$id);
+        foreach ($idArr as $v) {
+            $info = Link::where("id", $v)->update(['status' => -1]);
+            if ($info) {
+                continue;
+            } else {
+                $message = [
+                    'code' => 0,
+                    'message' => '推荐链接删除失败，请稍后重试'
+                ];
+                return response()->json($message);
+            }
         }
+        $message = [
+            'code' => 1,
+            'message' => '推荐链接删除成功'
+        ];
         return response()->json($message);
     }
 }
