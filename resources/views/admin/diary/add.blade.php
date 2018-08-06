@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
                                 <button type="button" onclick="tijiao()" class="btn btn-primary">提交</button>
                             </div>
                         </form>
