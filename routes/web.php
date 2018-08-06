@@ -15,11 +15,13 @@
 //    return view('home.index');
 //});
 
+Route::group(['prefix'=>'cheng'],function () {
+    Auth::routes();
+    //退出登录
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+});
 
-Auth::routes();
 
-//退出登录
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('admin/home', 'HomeController@index');
 

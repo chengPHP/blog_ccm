@@ -15,10 +15,22 @@ class DiaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = Diary::where("status",">=",0)->with('user')->paginate(config("program.PAGE_SIZE"));
-        return view('admin.diary.index',compact('list'));
+        if($request->search){
+            $search = $request->search;
+            $map = [
+                ["status",">=",0],
+                ['art','like','%'.$search.'%']
+            ];
+        }else{
+            $search = '';
+            $map = [
+                ["status",">=",0]
+            ];
+        }
+        $list = Diary::where($map)->with('user')->paginate(config("program.PAGE_SIZE"));
+        return view('admin.diary.index',compact('list','search'));
     }
 
     /**

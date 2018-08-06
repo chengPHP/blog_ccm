@@ -14,10 +14,22 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = User::where('status',">=",0)->paginate(config("program.PAGE_SIZE"));
-        return view("admin.user.index",compact('list'));
+        if($request->search){
+            $search = $request->search;
+            $map = [
+                ['status',">=",0],
+                ['email',"like","%".$search."%"]
+            ];
+        }else{
+            $search = '';
+            $map = [
+                ['status',">=",0]
+            ];
+        }
+        $list = User::where($map)->paginate(config("program.PAGE_SIZE"));
+        return view("admin.user.index",compact('list','search'));
     }
 
     /**
@@ -128,16 +140,24 @@ class UserController extends Controller
         //把ids字符串拆分成数组
         $idArr = explode(",",$id);
         foreach ($idArr as $v) {
-            $info = User::where('id', $v)->update(['status' => -1]);
-            if ($info) {
-                continue;
-            } else {
+            if($v==1){
                 $message = [
                     'code' => 0,
-                    'message' => '用户删除失败，请稍后重试'
+                    'message' => '超级管理员不能被删除'
                 ];
                 return response()->json($message);
+            }else{
+                if (User::where('id', $v)->update(['status' => -1])) {
+                    continue;
+                } else {
+                    $message = [
+                        'code' => 0,
+                        'message' => '用户删除失败，请稍后重试'
+                    ];
+                    return response()->json($message);
+                }
             }
+
         }
         $message = [
             'code' => 1,

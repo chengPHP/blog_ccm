@@ -52,6 +52,15 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
+//        return [
+//            'name.required'=>'请输入用户姓名',
+//            'name.max'=>'用户姓名最大长度不能超过255',
+//            'email.required'=>'请输入邮箱',
+//            'password.required'=>'请输入密码',
+//            'password.min'=>'密码长度至少六位',
+//            'password.max'=>'密码长度不能超过十八位',
+//            'repassword.same'=>'密码不一致',
+//        ];
     }
 
     /**

@@ -29,7 +29,9 @@ class IndexController extends CommonController
         $article_hot = Article::where($map)->orderBy('read_num', 'desc')->limit(10)->get();
         //友情链接
         $link_list = Link::where($map)->orderBy('orders', 'asc')->limit(5)->get();
-        return view('home.index', compact('article_list', 'article_new', 'article_hot', 'link_list'));
+        //热门标签
+        $hot_label = [1,23,4,5,6,7,8,9,5,35,2,5,4325,543,35,543,543,543,2];
+        return view('home.index', compact('article_list', 'article_new', 'article_hot', 'link_list','hot_label'));
     }
 
     //文章列表

@@ -13,13 +13,22 @@ class FeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $map = [
-            ['status', '>=', 0]
-        ];
+        if($request->search){
+            $search = $request->search;
+            $map = [
+                ["status",">=",0],
+                ['content','like','%'.$search.'%']
+            ];
+        }else{
+            $search = '';
+            $map = [
+                ["status",">=",0]
+            ];
+        }
         $list = Feedback::where($map)->paginate(config("program.PAGE_SIZE"));
-        return view('admin.feedback.index',compact('list'));
+        return view('admin.feedback.index',compact('list','search'));
     }
 
     /**

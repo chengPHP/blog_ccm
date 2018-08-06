@@ -4,7 +4,7 @@
     <!-- 面包屑导航 开始 -->
     <div class="main breadcrumb_nav trans_3">
 	<span class="layui-breadcrumb" lay-separator="—">
-	  <a href="{{url('/')}}">首页</a><a href="">学无止境</a><a><cite>PHP</cite></a>
+	  <a href="{{url('/')}}">首页</a><a href="">学无止境</a><a><cite>{{$list[0]['category']['name']}}</cite></a>
 	</span>
     </div>
     <!-- 面包屑导航 结束 -->

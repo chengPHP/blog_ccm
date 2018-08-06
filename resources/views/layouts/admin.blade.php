@@ -76,7 +76,7 @@
                         </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                        CCM
                     </div>
                 </li>
                 @include('layouts.menu')
@@ -92,9 +92,13 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                        {{--<span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>--}}
+                        <span class="m-r-sm text-muted welcome-message">欢迎来到程传民个人博客后台.</span>
                     </li>
-                    <li class="dropdown">
+                    <li>
+                        <a href="{{url('/')}}"><i class="fa fa-desktop"></i>前台</a>
+                    </li>
+                    {{--<li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                             <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
                         </a>
@@ -188,7 +192,7 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                    </li>--}}
 
 
                     <li>
@@ -213,9 +217,9 @@
 
 
         <div class="footer" >
-            <div class="pull-right">
+            {{--<div class="pull-right">
                 10GB of <strong>250GB</strong> Free.
-            </div>
+            </div>--}}
             <div>
                 <strong>Copyright</strong> Example Company &copy; 2014-2017
             </div>
@@ -277,19 +281,22 @@
 
 
 <!-- Mainly scripts -->
-{{--<script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>--}}
-{{--<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>--}}
+<script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>
+<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('admin/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
 <script src="{{asset('admin/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="{{asset('admin/js/inspinia.js')}}"></script>
 <script src="{{asset('admin/js/plugins/pace/pace.min.js')}}"></script>
-
-<script src="{{asset('admin/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-
+<script src="{{asset('admin/js/plugins/iCheck/icheck.min.js')}}"></script>
 <!-- webuploader -->
 <script type="text/javascript" src="{{asset('admin/js/plugins/webuploader/webuploader.min.js')}}"></script>
+<script>
+    $("#refreshTable").on("click",function () {
+        window.location.reload();
+    });
+</script>
 
 </body>
 

@@ -8,5 +8,6 @@
  */
 return [
     //后台每个页面数据显示条数
-    'PAGE_SIZE' => 5
+    'PAGE_SIZE' => 5,
+    'title' => 'CCM 个人博客'
 ];

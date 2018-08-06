@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 页面</title>
+    <title>{{config("program.title")}}</title>
     <style type="text/css">
         *{margin:0;padding:0;}
         html{height: 100%}

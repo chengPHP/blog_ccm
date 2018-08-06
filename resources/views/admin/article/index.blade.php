@@ -15,6 +15,17 @@
                         {{--<h5>文章管理列表</h5>--}}
                         <a href="{{ url('admin/article/create') }}"  class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
                         <button onclick="delArticles()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
+
+                        <div class="col-sm-5" style="float: right;" >
+                            <div class="input-group">
+                                <input type="text" id="search-text" placeholder="文章标题名称" value="{{$search}}" class="form-control">
+                                <span class="input-group-btn">
+                          <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
+                          <a href="javascript:;" class="btn blue-madison" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
+                        </span>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="ibox-content">
                         <table class="table table-bordered">
@@ -161,6 +172,10 @@
             }
 
         }
+
+        $("#simple-search").on('click',function () {
+            window.location.href = "{{url('admin/article')}}?search="+$("#search-text").val();
+        });
 
     </script>
 

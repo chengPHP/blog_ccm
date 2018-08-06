@@ -16,10 +16,22 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = Article::with('user','category','files')->paginate(config("program.PAGE_SIZE"));
-        return view('admin.article.index',compact('list'));
+        if($request->search){
+            $search = $request->search;
+            $map = [
+                ["status",">=",0],
+                ['title','like','%'.$search.'%']
+            ];
+        }else{
+            $search = '';
+            $map = [
+                ["status",">=",0]
+            ];
+        }
+        $list = Article::with('user','category','files')->where($map)->paginate(config("program.PAGE_SIZE"));
+        return view('admin.article.index',compact('list','search'));
     }
 
     /**

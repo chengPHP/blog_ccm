@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>博客前台模版</title>
-    <meta name="keywords" content="博客前台模版">
-    <meta name="description" content="博客前台模版">
+    <title>CCM 个人博客</title>
+    <meta name="keywords" content="CCM 个人博客">
+    <meta name="description" content="CCM 个人博客">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
@@ -33,7 +33,7 @@
                 @endif
             @endforeach
         </ul>
-        <div class="title">老张博客前台模版</div>
+        <div class="title">CCM 个人博客</div>
         <form action="" mothod="post" class="head_search trans_3 layui-form">
             <div class="layui-form-item trans_3">
                 <!-- <span class="close trans_3"><i class="layui-icon">&#x1006;</i> </span> -->
@@ -82,18 +82,17 @@
 
 <!-- 底部 开始 -->
 <ul class="layui-fixbar">
-    <!-- <li class="layui-icon qr_code">&#xe63b;<img class="qr_code_pic" src="{$settings.qr_code}" alt="微信公众号二维码"></li> -->
     <li class="layui-icon layui-fixbar-top" id="to_top">&#xe604;</li>
 </ul>
 <div class="layui-footer footer">
     <div class="main index_main">
-        <p><a href="http://www.phplaozhang.com">老张博客</a> © phplaozhang.com</p>
-        <p>
-            <a href="">网站地图</a>
-        </p>
+        <p><a href="javascript:;">xxxxx</a> © xxxxx</p>
         <p class="beian">
-            <a class="gongan" target="_blank" href=""><img src="{{asset('home/images/gonganbeian.png')}}" alt="豫公网安备 410xxxxxxx号">豫公网安备 410xxxxxxx号</a>
-            <a class="icp" target="_blank" href="http://www.miitbeian.gov.cn">豫ICP备xxxxxxxxx号-1</a>
+            <a class="gongan" target="_blank" href="">
+{{--                <img src="{{asset('home/images/gonganbeian.png')}}" alt="xxxxxxxxxxxxx">--}}
+                xxxxxxxxxxxxxxxxx
+            </a>
+            <a class="icp" target="_blank" href="http://www.miitbeian.gov.cn">xxxxxxxxxxxxxxxx</a>
         </p>
     </div>
 </div>

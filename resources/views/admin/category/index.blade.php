@@ -15,6 +15,17 @@
                         {{--<h5>类别管理列表</h5>--}}
                         <a href="{{ url('admin/category/create') }}" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
                         <button onclick="delCategories()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
+
+                        <div class="col-sm-5" style="float: right;" >
+                            <div class="input-group">
+                                <input type="text" id="search-text" placeholder="类别名称" value="{{$search}}" class="form-control">
+                                <span class="input-group-btn">
+                          <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
+                          <a href="javascript:;" class="btn blue-madison" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
+                        </span>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="ibox-content">
                         <table class="table table-bordered">
@@ -149,6 +160,10 @@
         function deleteCategory(id) {
             deleteItems(id,"确定删除该类别吗");
         }
+
+        $("#simple-search").on('click',function () {
+            window.location.href = "{{url('admin/category')}}?search="+$("#search-text").val();
+        });
 
     </script>
 

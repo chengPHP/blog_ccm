@@ -15,10 +15,22 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = Category::paginate(config("program.PAGE_SIZE"));
-        return view('admin.category.index',compact('list'));
+        if($request->search){
+            $search = $request->search;
+            $map = [
+                ['status', '>=', 0],
+                ['name', 'like', '%'.$search.'%']
+            ];
+        }else{
+            $search = '';
+            $map = [
+                ['status', '>=', 0]
+            ];
+        }
+        $list = Category::where($map)->paginate(config("program.PAGE_SIZE"));
+        return view('admin.category.index',compact('list','search'));
     }
 
     /**
