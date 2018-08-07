@@ -6,7 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Layouts</title>
+    <title>后台管理 个人博客</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('home/images/laozhang_avatar.png')}}" >
 
     <link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -93,12 +95,10 @@
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
                         {{--<span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>--}}
-                        <span class="m-r-sm text-muted welcome-message">欢迎来到程传民个人博客后台.</span>
+                        <span class="m-r-sm text-muted welcome-message">欢迎来到程传民个人博客后台管理.</span>
                     </li>
-                    <li>
-                        <a href="{{url('/')}}"><i class="fa fa-desktop"></i>前台</a>
-                    </li>
-                    {{--<li class="dropdown">
+
+                    <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                             <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
                         </a>
@@ -192,8 +192,11 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>--}}
+                    </li>
 
+                    <li>
+                        <a href="{{url('/')}}"><i class="fa fa-desktop"></i> 前台</a>
+                    </li>
 
                     <li>
                         <a href="{{ route('logout') }}"
@@ -298,6 +301,9 @@
     });
 </script>
 
+<!-- Mainly scripts -->
+{{--<script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>--}}
+<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
 </body>
 
 </html>

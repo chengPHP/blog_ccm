@@ -35,7 +35,7 @@
 </li>
 
 <li class="{{ active_class(if_uri_pattern('admin/feedback*')) }}">
-    <a href="{{url('admin/feedback')}}"><i class="fa fa-link"></i> <span class="nav-label">留言管理</span></a>
+    <a href="{{url('admin/feedback')}}"><i class="fa fa-envelope"></i> <span class="nav-label">留言管理</span></a>
 </li>
 
 <li class="{{ active_class(if_uri_pattern('admin/diary*')) }}">
