@@ -13,16 +13,16 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{--<h5>日记管理列表</h5>--}}
-                        <a href="{{ url('admin/diary/create') }}" data-toggle="modal" data-target=".bs-example-modal-lg" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        <a href="{{ url('admin/diary/create') }}"  class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
                         <button onclick="delDiaries()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
 
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="日记内容" value="{{$search}}" class="form-control">
                                 <span class="input-group-btn">
-                          <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
-                          <a href="javascript:;" class="btn blue-madison" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
-                        </span>
+                                  <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
+                                  <a href="javascript:;" class="btn btn-outline btn-default" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
+                                </span>
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
                                                 启用
                                             @endif
                                         </td>
-                                        <td>
+                                        <td style="width:60%;overflow: hidden;text-overflow: ellipsis;" >
                                             @php
                                                 echo $v['art'];
                                             @endphp
@@ -59,8 +59,8 @@
                                         <td>{{$v['created_at']}}</td>
                                         <td>
                                             {{--<span title="修改信息" onclick="updateNav('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench" style="font-size: 24px;"></i> </span>--}}
-                                            <a title="修改信息" href="{{url('admin/diary')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench" style="font-size: 24px;"></i> </a>
-                                            <span title="删除类别" onclick="deleteDiary('{{$v['id']}}')"><i class="fa fa-trash-o" style="font-size: 24px;margin-left: 20px;"></i></span>
+                                            <a class="btn btn-xs btn-info" title="修改信息" href="{{url('admin/diary')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench"></i> 修改</a>
+                                            <span class="btn btn-xs btn-danger" title="删除类别" onclick="deleteDiary('{{$v['id']}}')"><i class="fa fa-trash-o"></i> 删除</span>
                                         </td>
                                     </tr>
                                 @endforeach

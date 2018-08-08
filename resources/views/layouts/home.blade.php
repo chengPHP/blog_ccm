@@ -8,7 +8,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('home/images/laozhang_avatar.png')}}"
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('home/images/laozhang_avatar.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('home/layui/css/layui.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('home/css/style.css')}}">
     <script type="text/javascript" src="{{asset('home/layui/layui.js')}}"></script>
@@ -35,9 +35,9 @@
             @endforeach
         </ul>
         <div class="title">CCM 个人博客</div>
-        <form action="" mothod="post" class="head_search trans_3 layui-form">
+        <!--<form action="" mothod="post" class="head_search trans_3 layui-form">
             <div class="layui-form-item trans_3">
-                <!-- <span class="close trans_3"><i class="layui-icon">&#x1006;</i> </span> -->
+                <span class="close trans_3"><i class="layui-icon">&#x1006;</i> </span>
                 <div class="layui-input-inline trans_3">
                     <select name="model_id trans_3">
                         <option value="1" selected >文章模型</option>
@@ -47,8 +47,7 @@
                 <input type="text" name="keywords" placeholder="搜索" autocomplete="off" class="search_input trans_3">
                 <button class="layui-btn" lay-submit="" style="display: none;"></button>
             </div>
-
-        </form>
+        </form>-->
     </div>
 </div>
 <div class="header_back"></div>
@@ -97,6 +96,7 @@
         </p>
     </div>
 </div>
+<script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>
 <!-- 底部 结束 -->
 <script type="text/javascript">
     layui.use(['form','element'], function(){

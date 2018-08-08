@@ -73,7 +73,7 @@
                         type: "success",
                         timer: 1000,
                     },function () {
-                        window.location.reload();
+                        window.location.href = "{{url('admin/feedback')}}";
                     });
                 }else{
                     swal("", data.message, "error");

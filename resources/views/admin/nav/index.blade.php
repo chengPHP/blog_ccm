@@ -20,9 +20,9 @@
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="导航栏名称" value="{{$search}}" class="form-control">
                                 <span class="input-group-btn">
-                          <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
-                          <a href="javascript:;" class="btn blue-madison" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
-                        </span>
+                                  <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
+                                  <a href="javascript:;" class="btn btn-outline btn-default" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
+                                </span>
                             </div>
                         </div>
 
@@ -60,8 +60,8 @@
                                         <td>{{$v['pid']}}</td>
                                         <td>{{$v['orders']}}</td>
                                         <td>
-                                            <span title="修改信息" onclick="updateNav('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench" style="font-size: 24px;"></i> </span>
-                                            <span title="删除类别" onclick="deleteNav('{{$v['id']}}')"><i class="fa fa-trash-o" style="font-size: 24px;margin-left: 20px;"></i></span>
+                                            <span class="btn btn-xs btn-info" title="修改信息" onclick="updateNav('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench"></i> 修改</span>
+                                            <span class="btn btn-xs btn-danger" title="删除类别" onclick="deleteNav('{{$v['id']}}')"><i class="fa fa-trash-o"></i> 删除</span>
                                         </td>
                                     </tr>
                                 @endforeach

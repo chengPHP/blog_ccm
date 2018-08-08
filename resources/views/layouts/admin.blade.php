@@ -30,6 +30,7 @@
     <script src="{{asset('admin/js/plugins/sweetalert/sweetalert.min.js')}}" ></script>
 
     {{--custom--}}
+    <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
     <script src="{{asset('admin/js/custom.js')}}" ></script>
 
     {{--百度编辑器--}}
@@ -303,7 +304,7 @@
 
 <!-- Mainly scripts -->
 {{--<script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>--}}
-<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
+{{--<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>--}}
 </body>
 
 </html>

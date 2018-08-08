@@ -20,9 +20,9 @@
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="文章标题名称" value="{{$search}}" class="form-control">
                                 <span class="input-group-btn">
-                          <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
-                          <a href="javascript:;" class="btn blue-madison" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
-                        </span>
+                                  <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
+                                  <a href="javascript:;" class="btn btn-outline btn-default" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
+                                </span>
                             </div>
                         </div>
 
@@ -69,8 +69,8 @@
                                         <td>{{$v['read_num']}}</td>
                                         <td>
                                             {{--<span title="修改信息" onclick="updateArticle('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-wrench" style="font-size: 24px;"></i> </span>--}}
-                                            <a title="修改信息" href="{{url('admin/article')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench" style="font-size: 24px;"></i> </a>
-                                            <span title="删除文章" onclick="deleteArticle('{{$v['id']}}')"><i class="fa fa-trash-o" style="font-size: 24px;margin-left: 20px;"></i></span>
+                                            <a class="btn btn-xs btn-info" title="修改信息" href="{{url('admin/article')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench"></i> 修改</a>
+                                            <span class="btn btn-xs btn-danger" title="删除文章" onclick="deleteArticle('{{$v['id']}}')"><i class="fa fa-trash-o"></i> 删除</span>
                                         </td>
                                     </tr>
                                 @endforeach

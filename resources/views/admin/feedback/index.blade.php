@@ -20,9 +20,9 @@
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="留言内容" value="{{$search}}" class="form-control">
                                 <span class="input-group-btn">
-                          <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
-                          <a href="javascript:;" class="btn blue-madison" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
-                        </span>
+                                  <button type="button" class="btn blue" id="simple-search"><i class="fa fa-search"></i> 查询</button>
+                                  <a href="javascript:;" class="btn btn-outline btn-default" id="refreshTable"><i class="fa fa-refresh"></i> 刷新</a>
+                                </span>
                             </div>
                         </div>
 
@@ -59,9 +59,9 @@
                                         <td>{{$v['created_at']}}</td>
                                         <td>
                                             {{--<span title="修改信息" onclick="updateFeedback('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench" style="font-size: 24px;"></i> </span>--}}
-                                            <a title="修改信息" href="{{url('admin/feedback')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench" style="font-size: 24px;"></i> </a>
-                                            <a title="回复留言" href="{{url('admin/feedback/reply')}}/{{$v['id']}}" ><i class="fa fa-mail-reply" style="font-size: 24px;"></i> </a>
-                                            <span title="删除类别" onclick="deleteFeedback('{{$v['id']}}')"><i class="fa fa-trash-o" style="font-size: 24px;margin-left: 20px;"></i></span>
+                                            <a class="btn btn-xs btn-info" title="修改信息" href="{{url('admin/feedback')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench"></i> 修改</a>
+                                            <a class="btn btn-xs btn-success" title="回复留言" href="{{url('admin/feedback/reply')}}/{{$v['id']}}" ><i class="fa fa-mail-reply" ></i> 回复</a>
+                                            <span class="btn btn-xs btn-danger" title="删除类别" onclick="deleteFeedback('{{$v['id']}}')"><i class="fa fa-trash-o" ></i> 删除</span>
                                         </td>
                                     </tr>
                                 @endforeach

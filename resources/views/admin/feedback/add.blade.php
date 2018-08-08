@@ -13,7 +13,9 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>留言管理列表</h5>
-                        <a href="{{ url('admin/feedback/create') }}" data-toggle="modal" data-target=".bs-example-modal-lg" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        {{--<a href="{{ url('admin/feedback/create') }}" data-toggle="modal" data-target=".bs-example-modal-lg" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>--}}
+
+                        <a style="position: absolute;right: 30px;top: 8px;" class="btn btn-outline btn-default" title="返回" href="{{url('admin/feedback')}}" ><i class="fa fa-mail-reply" ></i> 返回</a>
                     </div>
                     <div class="ibox-content">
                         <form method="post" class="form-horizontal" action="{{url('admin/feedback')}}">
@@ -67,7 +69,6 @@
                         type: "success",
                         timer: 1000,
                     },function () {
-//                        window.location.reload();
                         window.location.href = "{{url('admin/feedback')}}";
                     });
                 }else{

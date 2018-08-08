@@ -62,6 +62,10 @@ Route::group(['namespace'=>'Home'],function (){
     Route::get('about_me','IndexController@aboutMe')->name('about_me');
     //关于博客
     Route::get('about_blog','IndexController@aboutBlog')->name('about_blog');
+    //留言页面
+    Route::get('feedback','FeedbackController@index')->name('feedback');
+    //添加留言
+    Route::post('addFeedback','FeedbackController@store')->name('addFeedback');
 });
 
 //文件管理模块路由开始

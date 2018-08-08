@@ -13,7 +13,7 @@
 		<div class="detail_container trans_3">
 			<h1>关于我</h1>
 			<div class="line"></div>
-			<div class="content"><p>&nbsp; &nbsp; &nbsp; &nbsp; 大家好，欢迎来到老张博客！老张，其实并不老。张丹峰，95年生人，PHP程序员一枚，因为对PHP和Web前端有着相对比较浓厚的兴趣，所以现在从事着建站的工作。该博客是老张的第一个博客，也是老张自己开发的。这里将记录老张职业生涯的点点滴滴，感谢来访与关注！</p><p><br></p><p><b>老张博客</b></p><p>&nbsp; &nbsp; &nbsp; &nbsp; 在博客的首页可以看到三个词：“业精于勤”、”学无止境“、”工匠精神“。这三个词是老张的态度与精神，也是老张博客的灵魂。在该博客展现最多的也是学习与分享，记录学习的过程和方法，分享领域的问题和经验。</p></div>
+			<div class="content"><p>&nbsp; &nbsp; &nbsp; &nbsp; 大家好，欢迎来到个人博客！程传民，96年生人，PHP程序员一枚，因为对PHP和Web前端有着相对比较浓厚的兴趣，所以现在从事着Web开发的工作。该博客是我的第一个博客。这里将记录我职业生涯的点点滴滴，感谢来访与关注！</p><p><br></p><p><b>个人博客</b></p><p>&nbsp; &nbsp; &nbsp; &nbsp; 在博客的首页可以看到三个词：“业精于勤”、”学无止境“、”工匠精神“。这三个词是我的态度与精神，也是个人博客的灵魂。在该博客展现最多的也是学习与分享，记录学习的过程和方法，分享领域的问题和经验。</p></div>
 		</div>
 		</div>
 		<div class="page_right">
@@ -22,6 +22,7 @@
 				<ol class="seond_category trans_3">
 					<li class="selected" ><a href="{{route('about_me')}}" class="layui-btn layui-btn-primary trans_1">关于我</a></li>
 					<li><a href="{{route('about_blog')}}" class="layui-btn layui-btn-primary trans_1">关于博客</a></li>
+					<li><a href="{{route('feedback')}}" class="layui-btn layui-btn-primary trans_1">留言</a></li>
 				</ol>
 			</div>
 

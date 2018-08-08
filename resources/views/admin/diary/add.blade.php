@@ -13,7 +13,9 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>记下每天的心情</h5>
-                        {{--<a href="{{ url('admin/diary/create') }}" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>--}}
+                        {{--<a style="float: right" href="{{ url('admin/diary/create') }}" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>--}}
+                        <a style="position: absolute;right: 30px;top: 8px;" class="btn btn-outline btn-default" title="返回" href="{{url('admin/diary')}}" ><i class="fa fa-mail-reply" ></i> 返回</a>
+
                     </div>
                     <div class="ibox-content">
                         <form method="post" class="form-horizontal" action="{{url('admin/diary')}}">
