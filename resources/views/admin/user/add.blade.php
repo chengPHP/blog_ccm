@@ -17,31 +17,43 @@
         @endif
 
         {{csrf_field()}}
-        <div class="form-group"><label class="col-sm-2 control-label">姓名</label>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">姓名</label>
             <div class="col-sm-10">
-                <input type="text" name="name" value="" class="form-control">
+                <input id="name" type="text" name="name" value="" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">邮箱</label>
+        <div class="form-group">
+            <label for="phone" class="col-sm-2 control-label">手机号</label>
             <div class="col-sm-10">
-                <input type="email" name="email" value="" class="form-control">
+                <input id="phone" type="text" name="phone" value="" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">密码</label>
+        <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">邮箱</label>
             <div class="col-sm-10">
-                <input type="password" name="password" value="" class="form-control">
+                <input id="email" type="email" name="email" value="" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">确认密码</label>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">密码</label>
             <div class="col-sm-10">
-                <input type="password" name="repassword" value="" class="form-control">
+                <input id="password" type="password" name="password" value="" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">状态</label>
+        <div class="form-group">
+            <label for="repassword" class="col-sm-2 control-label">确认密码</label>
+            <div class="col-sm-10">
+                <input id="repassword" type="password" name="repassword" value="" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">状态</label>
             <div class="col-sm-10">
                 <div class="radio radio-info radio-inline">
                     <input type="radio" id="inlineRadio1" value="1" name="status" checked="">

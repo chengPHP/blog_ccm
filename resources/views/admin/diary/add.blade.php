@@ -20,7 +20,8 @@
                     <div class="ibox-content">
                         <form method="post" class="form-horizontal" action="{{url('admin/diary')}}">
                             {{csrf_field()}}
-                            <div class="form-group"><label class="col-sm-2 control-label">日记内容</label>
+                            <div class="form-group">
+                                <label for="editor" class="col-sm-2 control-label">日记内容</label>
                                 <div class="col-sm-10">
                                     <script id="editor" type="text/plain" style="width:100%;height:200px;"></script>
                                     <script type="text/javascript">
@@ -31,7 +32,8 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group"><label class="col-sm-2 control-label">状态</label>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">状态</label>
                                 <div class="col-sm-10">
                                     <div class="radio radio-info radio-inline">
                                         <input type="radio" id="inlineRadio1" value="1" name="status" checked="">

@@ -21,6 +21,10 @@ Route::group(['prefix'=>'cheng'],function () {
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 });
 
+//获取验证码操作部分
+Route::group(['prefix'=>'cheng'],function () {
+    Route::post('sendMsg', 'YzmController@sendMsg')->name('sendMsg');
+});
 
 
 Route::get('admin/home', 'HomeController@index');

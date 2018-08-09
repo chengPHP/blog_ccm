@@ -19,7 +19,8 @@
                         <form method="post" class="form-horizontal" action="{{url('admin/feedback/reply_store')}}/{{$info->id}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <input type="hidden" name="pid" value="{{$info->id}}">
-                            <div class="form-group"><label class="col-sm-2 control-label">留言内容</label>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">留言内容</label>
                                 <div class="col-sm-10">
                                     @php
                                         echo $info->content;
@@ -28,7 +29,8 @@
                             </div>
                             <div class="hr-line-dashed"></div>
 
-                            <div class="form-group"><label class="col-sm-2 control-label">回复内容</label>
+                            <div class="form-group">
+                                <label for="editor" class="col-sm-2 control-label">回复内容</label>
                                 <div class="col-sm-10">
                                     <script id="editor" type="text/plain" style="width:100%;height:200px;">
                                     </script>
@@ -40,7 +42,8 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group"><label class="col-sm-2 control-label">状态</label>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">状态</label>
                                 <div class="col-sm-10">
                                     <div class="radio radio-info radio-inline">
                                         <input type="radio" id="inlineRadio1" value="1" name="status" checked>

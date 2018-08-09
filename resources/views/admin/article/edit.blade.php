@@ -20,15 +20,17 @@
                         <form method="post" class="form-horizontal" action="{{url('admin/article')}}/{{$info->id}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <input type="hidden" name="_method" value="PUT">
-                            <div class="form-group"><label class="col-sm-2 control-label">标题名称</label>
+                            <div class="form-group">
+                                <label for="title" class="col-sm-2 control-label">标题名称</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="title" value="{{$info->title}}" class="form-control">
+                                    <input id="title" type="text" name="title" value="{{$info->title}}" class="form-control">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group"><label class="col-sm-2 control-label">文章类别</label>
+                            <div class="form-group">
+                                <label for="category_id" class="col-sm-2 control-label">文章类别</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control m-b" name="category_id">
+                                    <select id="category_id" class="form-control m-b" name="category_id">
                                         <option value="0">请选择</option>
                                         @foreach($category as $v)
                                             <option value="{{$v['id']}}" {{$v['id']==$info->category_id? 'selected' :''}} >{{$v['name']}}</option>
@@ -37,13 +39,15 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group"><label class="col-sm-2 control-label">文章简介</label>
+                            <div class="form-group">
+                                <label for="descr" class="col-sm-2 control-label">文章简介</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="descr" value="{{$info->descr}}" class="form-control">
+                                    <input id="descr" type="text" name="descr" value="{{$info->descr}}" class="form-control">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group"><label class="col-sm-2 control-label">文章内容</label>
+                            <div class="form-group">
+                                <label for="editor" class="col-sm-2 control-label">文章内容</label>
                                 <div class="col-sm-10">
                                     <script id="editor" type="text/plain" style="width:100%;height:200px;">
                                         @php
@@ -60,13 +64,15 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group"><label class="col-sm-2 control-label">关键词</label>
+                            <div class="form-group">
+                                <label for="tags" class="col-sm-2 control-label">关键词</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="tags" value="{{$info->tags}}" class="form-control">
+                                    <input id="tags" type="text" name="tags" value="{{$info->tags}}" class="form-control">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group"><label class="col-sm-2 control-label">状态</label>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">状态</label>
                                 <div class="col-sm-10">
                                     <div class="radio radio-info radio-inline">
                                         <input type="radio" id="inlineRadio1" value="1" name="status" {{$info->status==1 ? 'checked': ''}}>

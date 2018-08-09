@@ -14,8 +14,8 @@
 
                     <div class="ibox-title">
                         {{--<h5>用户管理列表</h5>--}}
-                        <a href="{{ url('admin/user/create') }}" class="btn btn-m btn-primary" data-toggle="modal" data-target=".bs-example-modal-md" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
-                        <button onclick="delUsers()" style="display: inline-block" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
+                        <button onclick="add()" class="btn btn-m btn-primary" id="add-btn" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-plus"></i> 添加</button>
+                        <button onclick="delUsers()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
 
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
@@ -36,6 +36,7 @@
                                     <th>id</th>
                                     <th>状态</th>
                                     <th>姓名</th>
+                                    <th>手机号</th>
                                     <th>邮箱</th>
                                     <th>设置</th>
                                 </tr>
@@ -53,6 +54,7 @@
                                             @endif
                                         </td>
                                         <td>{{$v['name']}}</td>
+                                        <td>{{$v['phone']?$v['phone']:'暂无'}}</td>
                                         <td>{{$v['email']}}</td>
                                         <td>
                                             <span class="btn btn-xs btn-info" title="修改信息" onclick="updateUser('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench"></i> 修改</span>
@@ -69,8 +71,34 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+
     <script type="text/javascript" >
+
+        function add() {
+            $(".bs-example-modal-md .modal-content").html();
+            $.ajax({
+                url: "{{ url('admin/user/create') }}",
+                type: 'GET',
+                dataType: 'HTML',
+                cache:false,
+                beforeSend: function () {
+                },
+                success: function (data, textStatus, xhr) {
+                    $(".bs-example-modal-md .modal-content").html(data);
+                }
+            });
+        }
+
         function updateUser(id) {
+            $(".bs-example-modal-md .modal-content").html();
             $.ajax({
                 url: "{{url('admin/user')}}/"+id+'/edit',
                 type: 'GET',

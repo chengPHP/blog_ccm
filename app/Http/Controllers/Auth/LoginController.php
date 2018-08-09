@@ -41,6 +41,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $_SESSION['yzm'] = "asdasd";
         $this->middleware('guest')->except('logout');
     }
 

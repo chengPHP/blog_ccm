@@ -43,9 +43,16 @@
     {{--图片预览--}}
     <script src="{{asset('admin/js/plugins/lightbox2/dist/js/lightbox.min.js')}}" ></script>
 
+    <style>
+        /*这段CSS样式是修复bootstrap3 模态框关闭，body边距bug*/
+        body{
+            padding-right: inherit !important;
+        }
+    </style>
+
 </head>
 
-<body>
+<body class="pace-done fixed-sidebar skin-1 fixed-nav fixed-nav-basic">
 
 <div id="wrapper">
 
@@ -89,13 +96,13 @@
 
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+            {{--<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">--}}
+            <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        {{--<span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>--}}
                         <span class="m-r-sm text-muted welcome-message">欢迎来到程传民个人博客后台管理.</span>
                     </li>
 
@@ -220,7 +227,7 @@
         @yield('content')
 
 
-        <div class="footer" >
+        <div class="footer fixed" >
             {{--<div class="pull-right">
                 10GB of <strong>250GB</strong> Free.
             </div>--}}
@@ -252,7 +259,7 @@
 </div>
 
 <!-- md-modal -->
-<div class="modal bs-example-modal-md  animated bounceInDown"  role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="mymodel" class="modal bs-example-modal-md  animated bounceInDown"  role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="progress m-b-none">
@@ -301,7 +308,23 @@
         window.location.reload();
     });
 </script>
+<script type="text/javascript">
+    // Config box
+    if (localStorageSupport){
+        localStorage.setItem("fixedfooter",'on');
+        localStorage.setItem("fixedsidebar",'on');
+        localStorage.setItem("fixednavbar",'off');
+        localStorage.setItem("fixednavbar2",'off');
+    }
 
+//    $(document).read(function () {
+        $('#mymodel').on('hide.bs.modal', function () {
+            $(".modal-open").css("padding-right","0px");
+        });
+//    })
+
+
+</script>
 <!-- Mainly scripts -->
 {{--<script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>--}}
 {{--<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>--}}

@@ -13,7 +13,7 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{--<h5>推荐链接管理</h5>--}}
-                        <a href="{{ url('admin/link/create') }}" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        <button onclick="add()" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</button>
                         <button onclick="delLinks()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
 
                         <div class="col-sm-5" style="float: right;" >
@@ -73,7 +73,24 @@
     </div>
 
     <script type="text/javascript" >
+
+        function add() {
+            $(".bs-example-modal-md .modal-content").html();
+            $.ajax({
+                url: "{{ url('admin/link/create') }}",
+                type: 'GET',
+                dataType: 'HTML',
+                cache:false,
+                beforeSend: function () {
+                },
+                success: function (data, textStatus, xhr) {
+                    $(".bs-example-modal-md .modal-content").html(data);
+                }
+            });
+        }
+
         function updateLink(id) {
+            $(".bs-example-modal-md .modal-content").html();
             $.ajax({
                 url: "{{url('admin/link')}}/"+id+'/edit',
                 type: 'GET',

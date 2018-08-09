@@ -6,31 +6,36 @@
     <div class="modal-body">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <input type="hidden" name="_method" value="PUT">
-        <div class="form-group"><label class="col-sm-2 control-label">链接名称</label>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">链接名称</label>
             <div class="col-sm-10">
-                <input type="text" name="name" value="{{$info->name}}" class="form-control">
+                <input id="name" type="text" name="name" value="{{$info->name}}" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">链接标题</label>
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">链接标题</label>
             <div class="col-sm-10">
-                <input type="text" name="title" value="{{$info->title}}" class="form-control">
+                <input id="title" type="text" name="title" value="{{$info->title}}" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">链接url</label>
+        <div class="form-group">
+            <label for="url" class="col-sm-2 control-label">链接url</label>
             <div class="col-sm-10">
-                <input type="text" name="url" value="{{$info->url}}" class="form-control">
+                <input id="url" type="text" name="url" value="{{$info->url}}" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">排序</label>
+        <div class="form-group">
+            <label for="orders" class="col-sm-2 control-label">排序</label>
             <div class="col-sm-10">
-                <input type="text" name="orders" value="{{$info->orders}}" class="form-control">
+                <input id="orders" type="text" name="orders" value="{{$info->orders}}" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">状态</label>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">状态</label>
             <div class="col-sm-10">
                 <div class="radio radio-info radio-inline">
                     <input type="radio" id="inlineRadio1" value="1" name="status" {{$info->status==1 ? 'checked': ''}}>

@@ -5,31 +5,36 @@
 <form method="post" class="form-horizontal" action="{{url('admin/link')}}">
     <div class="modal-body">
         {{csrf_field()}}
-        <div class="form-group"><label class="col-sm-2 control-label">链接名称</label>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">链接名称</label>
             <div class="col-sm-10">
-                <input type="text" name="name" value="" class="form-control">
+                <input id="name" type="text" name="name" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">链接标题</label>
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">链接标题</label>
             <div class="col-sm-10">
-                <input type="text" name="title" value="" class="form-control">
+                <input id="title" type="text" name="title" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">链接url</label>
+        <div class="form-group">
+            <label for="url" class="col-sm-2 control-label">链接url</label>
             <div class="col-sm-10">
-                <input type="text" name="url" value="" class="form-control">
+                <input id="url" type="text" name="url" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">排序</label>
+        <div class="form-group">
+            <label for="orders" class="col-sm-2 control-label">排序</label>
             <div class="col-sm-10">
-                <input type="text" name="orders" value="" class="form-control">
+                <input id="orders" type="text" name="orders" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">状态</label>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">状态</label>
             <div class="col-sm-10">
                 <div class="radio radio-info radio-inline">
                     <input type="radio" id="inlineRadio1" value="1" name="status" checked="">

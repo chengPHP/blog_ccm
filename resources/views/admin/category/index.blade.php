@@ -13,7 +13,7 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{--<h5>类别管理列表</h5>--}}
-                        <a href="{{ url('admin/category/create') }}" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        <button onclick="add()" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</button>
                         <button onclick="delCategories()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
 
                         <div class="col-sm-5" style="float: right;" >
@@ -69,9 +69,21 @@
     </div>
 
     <script type="text/javascript" >
-        $(document).ready(function () {
 
-        });
+        function add() {
+            $(".bs-example-modal-md .modal-content").html();
+            $.ajax({
+                url: "{{ url('admin/category/create') }}",
+                type: 'GET',
+                dataType: 'HTML',
+                cache:false,
+                beforeSend: function () {
+                },
+                success: function (data, textStatus, xhr) {
+                    $(".modal-content").html(data);
+                }
+            });
+        }
 
         //全选/全不选
         function sltAll(object) {
@@ -144,6 +156,7 @@
         }
 
         function updateCategory(id) {
+            $(".bs-example-modal-md .modal-content").html();
             $.ajax({
                 url: "{{url('admin/category')}}/"+id+'/edit',
                 type: 'GET',

@@ -54,6 +54,38 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                <div class="col-md-12">
+                    <input id="phone" type="text" class="form-control" name="phone" placeholder="手机号" value="{{ old('phone') }}" required>
+
+                    @if ($errors->has('phone'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('phone') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group{{ $errors->has('yzm') || $errors->has('result') ? ' has-error' : '' }}">
+                <div class="col-md-6">
+                    <input id="yzm" type="text" class="form-control" name="yzm" placeholder="验证码">
+                    {{--错误信息提示--}}
+                    @if ($errors->has('yzm'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('yzm') }}</strong>
+                        </span>
+                    @endif
+                    @if ($errors->has('result'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('result') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    <input id="getMeg" onclick="settime()" type="button" class="btn btn-w-m btn-default" value="获取短信验证码"/>
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                 <div class="col-md-12">
                     <input id="password" type="password" class="form-control" placeholder="密码" name="password" required>
@@ -86,6 +118,54 @@
 <!-- iCheck -->
 <script src="{{asset('admin/js/plugins/iCheck/icheck.min.js')}}"></script>
 <script>
+
+    // 验证码倒计时
+    var countdown=60;
+    var status = 1;
+    var btn = $("#getMeg");
+    function settime(){
+        console.log(countdown);
+        var phone = $("#phone").val();
+        if(phone.length != 0){
+            alert("请输入手机号");
+        }else{
+            //已填写手机号
+            if(countdown == 60){
+                $.ajax({
+                    type: "post",
+                    url: "{{route('sendMsg')}}",
+                    data: {
+                        'phone' : phone,
+                        '_token' : '{{csrf_token()}}'
+                    },
+                    dataType:"json",
+                    success: function (data) {
+                        if(data.code=="000000"){
+                            btn.val(countdown+"S");
+                            btn.attr("disabled",true);
+                            countdown--;
+                        }
+                    }
+                });
+            }else if(countdown>0){
+                btn.val(countdown+"S");
+                btn.attr("disabled",true);
+                countdown--;
+            }else{
+                btn.attr("disabled",false);
+                btn.val("获取短信验证码");
+                //删除session
+                {{session()->forget('yzm')}}
+            }
+
+            setTimeout(function() {
+                settime() ;
+            },1000)
+        }
+
+    }
+
+
     $(document).ready(function(){
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',

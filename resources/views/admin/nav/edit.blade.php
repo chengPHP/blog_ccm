@@ -6,33 +6,38 @@
     <div class="modal-body">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <input type="hidden" name="_method" value="PUT">
-        <div class="form-group"><label class="col-sm-2 control-label">名称</label>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">名称</label>
             <div class="col-sm-10">
-                <input type="text" name="name" value="{{$info->name}}" placeholder="导航栏名称" class="form-control">
+                <input id="name" type="text" name="name" value="{{$info->name}}" placeholder="导航栏名称" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">别名</label>
+        <div class="form-group">
+            <label for="alias" class="col-sm-2 control-label">别名</label>
             <div class="col-sm-10">
-                <input type="text" name="alias" value="{{$info->alias}}" placeholder="导航栏别名" class="form-control">
+                <input id="alias" type="text" name="alias" value="{{$info->alias}}" placeholder="导航栏别名" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">超链接</label>
+        <div class="form-group">
+            <label for="url" class="col-sm-2 control-label">超链接</label>
             <div class="col-sm-10">
-                <input type="text" name="url" value="{{$info->url}}" placeholder="超链接" class="form-control">
+                <input id="url" type="text" name="url" value="{{$info->url}}" placeholder="超链接" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">排序</label>
+        <div class="form-group">
+            <label for="orders" class="col-sm-2 control-label">排序</label>
             <div class="col-sm-10">
-                <input type="text" name="orders" value="{{$info->orders}}" placeholder="排序" class="form-control">
+                <input id="orders" type="text" name="orders" value="{{$info->orders}}" placeholder="排序" class="form-control">
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">父级名称</label>
+        <div class="form-group">
+            <label for="pid" class="col-sm-2 control-label">父级名称</label>
             <div class="col-sm-10">
-                <select class="form-control m-b" name="pid">
+                <select id="pid" class="form-control m-b" name="pid">
                     <option value="0">请选择</option>
                     @foreach($nav_list as $v)
                         <option value="{{$v['id']}}" {{$info->pid == $v['id'] ? 'selected' : ''}} {{$info->id==$v['id'? 'disabled' : '']}} >{{$v['name']}}</option>
@@ -41,7 +46,8 @@
             </div>
         </div>
         <div class="hr-line-dashed"></div>
-        <div class="form-group"><label class="col-sm-2 control-label">状态</label>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">状态</label>
             <div class="col-sm-10">
                 <div class="radio radio-info radio-inline">
                     <input type="radio" id="inlineRadio1" value="1" name="status" {{$info->status==1 ? 'checked': ''}}>

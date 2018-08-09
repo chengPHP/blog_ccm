@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/home';
 
     /**
      * Create a new controller instance.
@@ -47,20 +47,23 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $result = true;
+        if($data['yzm'] != session('yzm')){
+            $result = false;
+        }
+
+        $data = array_merge($data,['result'=>$result]);
+
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|digits_between:11,11|unique:users',
+            'yzm' => 'required',
+            'result' => 'accepted',
             'password' => 'required|string|min:6|confirmed',
+        ],[
+            'result.accepted' => '验证码输入有误'
         ]);
-//        return [
-//            'name.required'=>'请输入用户姓名',
-//            'name.max'=>'用户姓名最大长度不能超过255',
-//            'email.required'=>'请输入邮箱',
-//            'password.required'=>'请输入密码',
-//            'password.min'=>'密码长度至少六位',
-//            'password.max'=>'密码长度不能超过十八位',
-//            'repassword.same'=>'密码不一致',
-//        ];
     }
 
     /**
@@ -74,6 +77,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
     }

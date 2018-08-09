@@ -188,6 +188,9 @@ return [
         //entrust
         Zizaco\Entrust\EntrustServiceProvider::class,
 
+        //验证码
+        Mews\Captcha\CaptchaServiceProvider::class,
+
     ],
 
     /*
@@ -246,6 +249,9 @@ return [
 
         //entrust
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+
+        //验证码
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];

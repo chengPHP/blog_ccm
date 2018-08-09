@@ -34,3 +34,20 @@ if (!function_exists('list_to_tree')) {
         return $tree;
     }
 }
+
+/*
+ * 获取随机验证码字符串
+ */
+if (!function_exists('get_rand_str')) {
+    function get_rand_str($length)
+    {
+        $str = 'abcdefghijklmnpqrstuvwxyz123456789';
+        $len = strlen($str) - 1;
+        $randstr = '';
+        for ($i = 0; $i < $length; $i++) {
+            $num = mt_rand(0, $len);
+            $randstr .= $str[$num];
+        }
+        return $randstr;
+    }
+}
