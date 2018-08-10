@@ -49,17 +49,22 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" onclick="tijiao()" class="btn btn-primary">提交</button>
+        <button type="button" onclick="tijiao(this)" class="btn btn-primary">提交</button>
     </div>
 </form>
 
 <script type="text/javascript" >
-    function tijiao() {
+    function tijiao(obj) {
         $.ajax({
             type: "post",
             url: "{{url('admin/link')}}",
             data: $('.form-horizontal').serialize(),
             dataType:"json",
+            beforeSend:function () {
+                // 禁用按钮防止重复提交
+                $(obj).attr({ disabled: "disabled" });
+                blog.loading('正在提交，请稍等...');
+            },
             success: function (data) {
                 if(data.code==1){
                     swal({
@@ -74,10 +79,36 @@
                     swal("", data.message, "error");
                 }
             },
+            complete:function () {
+                $(obj).removeAttr("disabled");
+                removeLoading('loading');
+            },
             error:function (jqXHR, textStatus, errorThrown) {
                 blog.errorPrompt(jqXHR, textStatus, errorThrown);
             }
         });
+    }
+
+    function loading3() {
+        $('body').loading({
+            loadingWidth:120,
+            title:'',
+            name:'test',
+            discription:'',
+            direction:'column',
+            type:'origin',
+            // originBg:'#71EA71',
+            originDivWidth:40,
+            originDivHeight:40,
+            originWidth:6,
+            originHeight:6,
+            smallLoading:false,
+            loadingMaskBg:'rgba(0,0,0,0.2)'
+        });
+
+        setTimeout(function(){
+            removeLoading('test');
+        },3000);
     }
 
 </script>

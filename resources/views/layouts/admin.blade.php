@@ -10,8 +10,15 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('home/images/laozhang_avatar.png')}}" >
 
+    {{-- loading --}}
+    <link rel="stylesheet" href="{{asset('admin/js/plugins/loading/css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/plugins/loading/css/global.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/plugins/loading/css/loading.css')}}">
+
     <link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+
+
 
     <link href="{{asset('admin/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
@@ -36,6 +43,8 @@
     {{--custom--}}
     <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
 {{--    <script src="{{asset('admin/js/custom.js')}}" ></script>--}}
+
+
 
     {{--百度编辑器--}}
     <script type="text/javascript" charset="utf-8" src="{{asset('admin/js/plugins/ueditor/ueditor.config.js')}}"></script>
@@ -291,6 +300,12 @@
 <script src="{{asset('admin/js/plugins/iCheck/icheck.min.js')}}"></script>
 <!-- webuploader -->
 <script type="text/javascript" src="{{asset('admin/js/plugins/webuploader/webuploader.min.js')}}"></script>
+
+{{-- loading --}}
+<script src="{{asset('admin/js/plugins/loading/js/loading.js')}}"></script>
+
+<script src="{{asset('admin/js/style.js')}}" ></script>
+
 <script>
     $("#refreshTable").on("click",function () {
         window.location.reload();

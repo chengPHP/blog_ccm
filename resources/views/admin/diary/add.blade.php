@@ -47,7 +47,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
-                                <button type="button" onclick="tijiao()" class="btn btn-primary">提交</button>
+                                <button type="button" onclick="tijiao(this)" class="btn btn-primary">提交</button>
                             </div>
                         </form>
                     </div>
@@ -57,12 +57,17 @@
     </div>
 
 <script type="text/javascript" >
-    function tijiao() {
+    function tijiao(obj) {
         $.ajax({
             type: "post",
             url: "{{url('admin/diary')}}",
             data: $('.form-horizontal').serialize(),
             dataType:"json",
+            beforeSend:function () {
+                // 禁用按钮防止重复提交
+                $(obj).attr({ disabled: "disabled" });
+                blog.loading('正在提交，请稍等...');
+            },
             success: function (data) {
                 if(data.code==1){
                     swal({
@@ -71,12 +76,15 @@
                         type: "success",
                         timer: 1000,
                     },function () {
-//                        window.location.reload();
                         window.location.href = "{{url('admin/diary')}}";
                     });
                 }else{
                     swal("", data.message, "error");
                 }
+            },
+            complete:function () {
+                $(obj).removeAttr("disabled");
+                removeLoading('loading');
             },
             error:function (jqXHR, textStatus, errorThrown) {
                 blog.errorPrompt(jqXHR, textStatus, errorThrown);

@@ -61,12 +61,17 @@
     </div>
 
 <script type="text/javascript" >
-    function tijiao() {
+    function tijiao(obj) {
         $.ajax({
             type: "post",
             url: "{{url('admin/diary')}}/{{$info->id}}",
             data: $('.form-horizontal').serialize(),
             dataType:"json",
+            beforeSend:function () {
+                // 禁用按钮防止重复提交
+                $(obj).attr({ disabled: "disabled" });
+                blog.loading('正在提交，请稍等...');
+            },
             success: function (data) {
                 if(data.code==1){
                     swal({
@@ -80,6 +85,10 @@
                 }else{
                     swal("", data.message, "error");
                 }
+            },
+            complete:function () {
+                $(obj).removeAttr("disabled");
+                removeLoading('loading');
             },
             error:function (jqXHR, textStatus, errorThrown) {
                 blog.errorPrompt(jqXHR, textStatus, errorThrown);
