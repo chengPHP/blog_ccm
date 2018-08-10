@@ -22,8 +22,12 @@
     {{--图片预览--}}
     <link href="{{asset('admin/js/plugins/lightbox2/dist/css/lightbox.min.css')}}" rel="stylesheet">
 
+
+    <!-- Mainly scripts -->
     <script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>
     <script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('admin/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+    <script src="{{asset('admin/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
     {{--sweetalert--}}
     <link href="{{asset('admin/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
@@ -31,7 +35,7 @@
 
     {{--custom--}}
     <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
-    <script src="{{asset('admin/js/custom.js')}}" ></script>
+{{--    <script src="{{asset('admin/js/custom.js')}}" ></script>--}}
 
     {{--百度编辑器--}}
     <script type="text/javascript" charset="utf-8" src="{{asset('admin/js/plugins/ueditor/ueditor.config.js')}}"></script>
@@ -240,11 +244,6 @@
 </div>
 
 
-{{--@include('layouts._modal')--}}
-
-
-
-
 <!-- Large modal -->
 <div class="modal bs-example-modal-lg  animated bounceInDown" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -259,7 +258,7 @@
 </div>
 
 <!-- md-modal -->
-<div id="mymodel" class="modal bs-example-modal-md  animated bounceInDown"  role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal bs-example-modal-md  animated bounceInDown"  role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="progress m-b-none">
@@ -286,17 +285,6 @@
 
 
 
-
-
-
-
-
-<!-- Mainly scripts -->
-<script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>
-<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('admin/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-<script src="{{asset('admin/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-
 <!-- Custom and plugin javascript -->
 <script src="{{asset('admin/js/inspinia.js')}}"></script>
 <script src="{{asset('admin/js/plugins/pace/pace.min.js')}}"></script>
@@ -317,17 +305,7 @@
         localStorage.setItem("fixednavbar2",'off');
     }
 
-//    $(document).read(function () {
-        $('#mymodel').on('hide.bs.modal', function () {
-            $(".modal-open").css("padding-right","0px");
-        });
-//    })
-
-
 </script>
-<!-- Mainly scripts -->
-{{--<script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>--}}
-{{--<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>--}}
 </body>
 
 </html>

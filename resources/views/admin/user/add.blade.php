@@ -2,7 +2,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">添加用户</h4>
 </div>
-<form method="post" class="form-horizontal" action="{{url('admin/user')}}">
+<form id="signupForm" method="post" class="form-horizontal" action="{{url('admin/user')}}">
     <div class="modal-body">
 
         {{--错误信息提示--}}
@@ -79,6 +79,9 @@
             url: "{{url('admin/user')}}",
             data: $('.form-horizontal').serialize(),
             dataType:"json",
+            beforeSend: function () {
+//                zjb.blockUI('#signupForm');
+            },
             success: function (data) {
                 if(data.code==1){
                     swal({

@@ -126,7 +126,7 @@
     function settime(){
         console.log(countdown);
         var phone = $("#phone").val();
-        if(phone.length != 0){
+        if(phone.length == 0){
             alert("请输入手机号");
         }else{
             //已填写手机号

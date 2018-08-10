@@ -9,5 +9,7 @@
 return [
     //后台每个页面数据显示条数
     'PAGE_SIZE' => 5,
-    'title' => 'CCM 个人博客'
+    'title' => 'CCM 个人博客',
+    //短信验证码有效时间 单位：S
+    'ACTIVE_TIME' => '60'
 ];

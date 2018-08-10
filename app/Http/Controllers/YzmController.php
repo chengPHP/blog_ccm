@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\VerificationCode;
 use Barryvdh\Debugbar\DataCollector\SessionCollector;
 use Illuminate\Http\Request;
 
@@ -16,10 +17,24 @@ class YzmController extends Controller
 
         //即将要发送的短信验证码为
         $yzm = get_rand_str(6);
-//        $yzm = "asd123";
-        session(['yzm' => $yzm]);
+
         //有效时间
-        $active_time = '60';
+        $active_time = config("program.ACTIVE_TIME");
+
+        //把验证码存放到数据库
+        $VerificationCode = new VerificationCode();
+        $VerificationCode->phone = $request->phone;
+        $VerificationCode->yzm = $yzm;
+        $VerificationCode->create_time_stamp = time();
+
+        if(!$VerificationCode->save()){
+            $result = [
+                'code' => '-1',
+                'message' => '获取验证码失败，请稍后重试'
+            ];
+            return response()->json($result);
+        }
+
         $param = $yzm.','.$active_time; //多个参数使用英文逗号隔开（如：param=“a,b,c”），如为参数则留空
         $mobile = $request->phone;
         $uid = "";
@@ -34,6 +49,9 @@ class YzmController extends Controller
         $result = $ucpass->SendSms($appid,$templateid,$param,$mobile,$uid);
 
         return response($result);
+
+//        $result = ['code' => '000000'];
+//        return response()->json($result);
     }
 
 

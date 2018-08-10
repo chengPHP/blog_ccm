@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\VerificationCode;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -47,9 +48,16 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $result = true;
-        if($data['yzm'] != session('yzm')){
-            $result = false;
+        $result = false;
+        $info = VerificationCode::where(['phone'=>$data['phone']])->orderBy("id","desc")->first();
+        //当前时间戳
+        $now_time = time();
+        if($info){
+            if(($info->create_time_stamp+config("program.ACTIVE_TIME"))>$now_time){
+                $result = true;
+            }
+            //删除该验证码数据
+            VerificationCode::where(['phone'=>$data['phone']])->delete();
         }
 
         $data = array_merge($data,['result'=>$result]);
