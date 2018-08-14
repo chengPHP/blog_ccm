@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserRequest;
+use App\Models\RoleUser;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -50,13 +51,25 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->status = $request->status;
-        $info = $user->save();
-        if($info){
+        $arr = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => encrypt($request->password),
+            'status' => $request->status,
+        ];
+        $user_id = User::insertGetId($arr);
+
+        if($user_id){
+            if(count($request->role_id) > 0){
+                foreach ($request->role_id as $k=>$v){
+                    $arr = [
+                        'user_id' => $user_id,
+                        'role_id' => $v
+                    ];
+                    RoleUser::create($arr);
+                }
+            }
+
             $message = [
                 'code' => 1,
                 'message' => '用户添加成功'
@@ -67,6 +80,7 @@ class UserController extends Controller
                 'message' => '用户添加失败，请稍后重试'
             ];
         }
+
         return response()->json($message);
     }
 
@@ -92,7 +106,7 @@ class UserController extends Controller
         $map = [
             'id' => $id
         ];
-        $info = User::where($map)->where('status','>=',0)->first();
+        $info = User::where($map)->with("roles")->where('status','>=',0)->first();
         if($info){
             return view('admin.user.edit',compact('info'));
         }else{
@@ -110,11 +124,21 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         if($request->password){
-            $arr = $request->except('_token','_method','repassword');
+            $arr = $request->except('_token','_method','role_id','repassword');
         }else{
-            $arr = $request->except('_token','_method','password','repassword');
+            $arr = $request->except('_token','_method','role_id','password','repassword');
         }
         $info = User::where('id',$id)->update($arr);
+
+        if(count($request->role_id)>0){
+            //删除该用户之前所有的角色
+            RoleUser::where("user_id",$id)->delete();
+            //添加该用户角色
+            foreach ($request->role_id as $k=>$v){
+                RoleUser::insert(["role_id"=>$v,"user_id"=>$id]);
+            }
+        }
+
         if($info){
             $message = [
                 'code' => 1,

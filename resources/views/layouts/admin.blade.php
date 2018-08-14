@@ -19,6 +19,9 @@
     <link href="{{asset('admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
 
+    <!-- select2 style-->
+    <link href="{{ asset('admin/js/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/js/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet">
 
     <link href="{{asset('admin/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
@@ -40,9 +43,15 @@
     <link href="{{asset('admin/css/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
     <script src="{{asset('admin/js/plugins/sweetalert/sweetalert.min.js')}}" ></script>
 
+    <!-- ztree -->
+    <link rel="stylesheet" href="{{asset('admin/js/plugins/zTree/css/zTreeStyle2/zTreeStyle2.css')}}"  media="all">
+
+    <!-- ztree -->
+    <link rel="stylesheet" href="{{asset('admin/css/plugins/text-spinners/spinners.css')}}"  media="all">
+
     {{--custom--}}
     <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
-{{--    <script src="{{asset('admin/js/custom.js')}}" ></script>--}}
+
 
 
 
@@ -267,7 +276,7 @@
 </div>
 
 <!-- md-modal -->
-<div class="modal bs-example-modal-md  animated bounceInDown"  role="dialog" aria-labelledby="myLargeModalLabel">
+<div id="md-modal" class="modal bs-example-modal-md  animated bounceInDown" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="progress m-b-none">
@@ -301,9 +310,17 @@
 <!-- webuploader -->
 <script type="text/javascript" src="{{asset('admin/js/plugins/webuploader/webuploader.min.js')}}"></script>
 
+<!-- ztree -->
+<script type="text/javascript" src="{{asset('admin/js/plugins/zTree/js/jquery.ztree.all.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/js/plugins/zTree/js/jquery.ztree.exhide.min.js')}}"></script>
+
+<!-- select2 -->
+<script type="text/javascript" src="{{ asset('admin/js/plugins/select2/js/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/js/plugins/select2/js/i18n/zh-CN.js') }}"></script>
+
 {{-- loading --}}
 <script src="{{asset('admin/js/plugins/loading/js/loading.js')}}"></script>
-
+{{--<script src="{{asset('admin/js/custom.js')}}" ></script>--}}
 <script src="{{asset('admin/js/style.js')}}" ></script>
 
 <script>
@@ -311,6 +328,9 @@
         window.location.reload();
     });
 </script>
+
+
+
 <script type="text/javascript">
     // Config box
     if (localStorageSupport){

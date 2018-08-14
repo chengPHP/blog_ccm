@@ -7,6 +7,18 @@ Breadcrumbs::register('admin/home', function ($breadcrumbs) {
     $breadcrumbs->push('后台首页', url('admin/home'));
 });
 
+// 后台首页/角色管理
+Breadcrumbs::register('role', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin/home');
+    $breadcrumbs->push('角色管理', url('admin/role'));
+});
+
+// 后台首页/权限管理
+Breadcrumbs::register('permission', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin/home');
+    $breadcrumbs->push('权限管理', url('admin/permission'));
+});
+
 // 后台首页/用户管理
 Breadcrumbs::register('user', function ($breadcrumbs) {
     $breadcrumbs->parent('admin/home');

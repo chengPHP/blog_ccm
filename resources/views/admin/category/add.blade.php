@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="pid" class="col-sm-2 control-label">父级类别</label>
             <div class="col-sm-10">
-                <select id="pid" class="form-control m-b" name="pid">
+                <select id="pid" class="form-control m-b select2" name="pid">
                     <option value="0">请选择</option>
                     @foreach($list as $v)
                         <option value="{{$v['id']}}">{{$v['name']}}</option>
@@ -43,8 +43,11 @@
         <button type="button" onclick="tijiao(this)" class="btn btn-primary">提交</button>
     </div>
 </form>
-
 <script type="text/javascript" >
+    //页面加载完成后初始化select2控件
+    $(document).ready(function() {
+        blog.handleSelect2();
+    });
     function tijiao(obj) {
         $.ajax({
             type: "post",

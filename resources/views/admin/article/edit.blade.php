@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label for="category_id" class="col-sm-2 control-label">文章类别</label>
                                 <div class="col-sm-10">
-                                    <select id="category_id" class="form-control m-b" name="category_id">
+                                    <select id="category_id" class="form-control m-b select2" name="category_id">
                                         <option value="0">请选择</option>
                                         @foreach($category as $v)
                                             <option value="{{$v['id']}}" {{$v['id']==$info->category_id? 'selected' :''}} >{{$v['name']}}</option>
@@ -97,6 +97,12 @@
     </div>
 
     <script type="text/javascript" >
+
+        //页面加载完成后初始化select2控件
+        $(document).ready(function() {
+            blog.handleSelect2();
+        });
+
         function tijiao(obj) {
             $.ajax({
                 type: "post",

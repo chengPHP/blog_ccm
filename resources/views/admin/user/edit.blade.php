@@ -31,6 +31,7 @@
             <label for="password" class="col-sm-2 control-label">密码</label>
             <div class="col-sm-10">
                 <input id="password" type="password" name="password" value="" class="form-control">
+                <span class="help-block dw-fontsize-8">* 密码为空，则不修改密码</span>
             </div>
         </div>
         <div class="hr-line-dashed"></div>
@@ -38,6 +39,15 @@
             <label for="repassword" class="col-sm-2 control-label">确认密码</label>
             <div class="col-sm-10">
                 <input id="repassword" type="password" name="repassword" value="" class="form-control">
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label for="role_id" class="col-sm-2 control-label">角色</label>
+            <div class="col-sm-10">
+                <select id="role_id" class="form-control m-b select2" multiple="multiple" name="role_id[]">
+                    {!! role_select($info->roles->pluck('id')->all(),0) !!}
+                </select>
             </div>
         </div>
         <div class="hr-line-dashed"></div>
@@ -62,6 +72,10 @@
 </form>
 
 <script type="text/javascript" >
+    //页面加载完成后初始化select2控件
+    $(document).ready(function() {
+        blog.handleSelect2();
+    });
     function tijiao(obj) {
         $.ajax({
             type: "post",

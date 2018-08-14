@@ -53,6 +53,15 @@
         </div>
         <div class="hr-line-dashed"></div>
         <div class="form-group">
+            <label for="role_id" class="col-sm-2 control-label">角色</label>
+            <div class="col-sm-10">
+                <select id="role_id" class="form-control m-b select2" multiple="multiple" name="role_id[]">
+                    {!! role_select() !!}
+                </select>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
             <label class="col-sm-2 control-label">状态</label>
             <div class="col-sm-10">
                 <div class="radio radio-info radio-inline">
@@ -71,8 +80,11 @@
         <button type="button" onclick="tijiao(this)" class="btn btn-primary">提交</button>
     </div>
 </form>
-
 <script type="text/javascript" >
+    //页面加载完成后初始化select2控件
+    $(document).ready(function() {
+        blog.handleSelect2();
+    });
     function tijiao(obj) {
         $.ajax({
             type: "post",

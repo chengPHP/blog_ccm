@@ -32,6 +32,10 @@ Route::get('admin/home', 'HomeController@index');
 
 //后台
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function (){
+    //角色管理
+    Route::resource('role','RoleController');
+    //权限管理
+    Route::resource('permission','PermissionController');
     //用户管理
     Route::resource('user','UserController');
     //类别管理

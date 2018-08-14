@@ -7,6 +7,14 @@
  * 帮助函数
  */
 
+/**
+ * 把返回的数据集转换成Tree
+ * @param array $list 要转换的数据集
+ * @param string $pid parent标记字段
+ * @param string $level level标记字段
+ * @return array
+ * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+ */
 if (!function_exists('list_to_tree')) {
     function list_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root = 0)
     {
@@ -34,6 +42,34 @@ if (!function_exists('list_to_tree')) {
         return $tree;
     }
 }
+/**
+ * 将list_to_tree的树还原成列表
+ * @param  array $tree 原来的树
+ * @param  string $child 孩子节点的键
+ * @param  string $order 排序显示的键，一般是主键 升序排列
+ * @param  array $list 过渡用的中间数组，
+ * @return array        返回排过序的列表数组
+ * @author yangweijie <yangweijiester@gmail.com>
+ */
+if (!function_exists('tree_to_list')) {
+    function tree_to_list($tree, $child = '_child', $order = 'id', &$list = array())
+    {
+        if (is_array($tree)) {
+            $refer = array();
+            foreach ($tree as $key => $value) {
+                $reffer = $value;
+                if (isset($reffer[$child])) {
+                    unset($reffer[$child]);
+                    tree_to_list($value[$child], $child, $order, $list);
+                }
+                $list[] = $reffer;
+            }
+            $list = list_sort_by($list, $order, $sortby = 'asc');
+        }
+        return $list;
+    }
+}
+
 
 /*
  * 获取随机验证码字符串
@@ -49,5 +85,79 @@ if (!function_exists('get_rand_str')) {
             $randstr .= $str[$num];
         }
         return $randstr;
+    }
+}
+
+/*
+ *权限select框
+ * */
+if (!function_exists('permission_select')) {
+    function permission_select($id = 0,$selected = 0, $type = 0)
+    {
+        $list = \App\Models\Permission::getSpaceTreeData();
+        if ($type == 1) {
+            $str = '<option value="">请选择权限</option>';
+        } else {
+            $str = '<option value="0">顶级权限</option>';
+        }
+
+        if ($list) {
+            foreach ($list as $key => $val) {
+                $str .= '<option value="' . $val['id'] . '" '
+                    . ($id == $val['id'] ? 'disabled' : '')
+                    . ($selected == $val['id'] ? 'selected="selected"' : '') . '>'
+                    . $val['space'] . $val['display_name'] .'('. $val['name'] .')'. '</option>';
+            }
+        }
+        return $str;
+    }
+}
+
+
+if (!function_exists('formatTreeData')) {
+    function formatTreeData($data, $id = "id", $parent_id = "parent_id", $root = 0, $space = '&nbsp;&nbsp;|--&nbsp;', $level = 0)
+    {
+        $arr = array();
+        if ($data) {
+            foreach ($data as $v) {
+                if ($v[$parent_id] == $root) {
+                    $v['level'] = $level + 1;
+                    $v['space'] = $root != 0 ? str_repeat($space, $level) : '' . str_repeat($space, $level);
+                    $arr[] = $v;
+                    $arr = array_merge($arr, formatTreeData($data, $id, $parent_id, $v[$id], $space, $level + 1));
+                }
+            }
+        }
+        return $arr;
+    }
+}
+
+/*
+ * */
+if(!function_exists("role_select")){
+    function role_select($selected = '', $type = 1)
+    {
+        $list = \App\Models\Role::where(['status'=>1])->get();
+
+        if ($type == 1) {
+            $str = '<option value="">请选择角色</option>';
+        } else {
+            $str = '';
+        }
+        if ($list) {
+            foreach ($list as $key => $val) {
+
+                if ($type) {
+                    $str .= '<option value="' . $val['id'] . '" '
+                        . ($selected == $val['id'] ? 'selected="selected"' : '') . '>'
+                        . $val['display_name'] .'('. $val['name'] .')'. '</option>';
+                } else {
+                    $str .= '<option value="' . $val['id'] . '" '
+                        . (in_array($val['id'], (array)$selected) ? 'selected="selected"' : '') . '>'
+                        . $val['display_name'] .'('. $val['name'] .')'. '</option>';
+                }
+            }
+        }
+        return $str;
     }
 }
