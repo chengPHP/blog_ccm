@@ -16,7 +16,6 @@ class LinkController extends Controller
      */
     public function index(Request $request)
     {
-
         if($request->search){
             $search = $request->search;
             $map = [
@@ -30,7 +29,8 @@ class LinkController extends Controller
             ];
         }
         $list = Link::where($map)->paginate(config("program.PAGE_SIZE"));
-        return view('admin.link.index',compact('list','search'));
+        $permission = get_user_permission();
+        return view('admin.link.index',compact('list','search','permission'));
     }
 
     /**

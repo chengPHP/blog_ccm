@@ -13,9 +13,12 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{--<h5>日记管理列表</h5>--}}
+                        @if(in_array(config('permissions.createDiary'),$permission))
                         <a href="{{ url('admin/diary/create') }}"  class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
+                        @endif
+                        @if(in_array(config('permissions.createDiary'),$permission))
                         <button onclick="delDiaries()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
-
+                        @endif
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="日记内容" value="{{$search}}" class="form-control">
@@ -36,7 +39,9 @@
                                     <th>状态</th>
                                     <th>日记内容</th>
                                     <th>时间</th>
+                                    @if(in_array(config('permissions.Diary'),$permission))
                                     <th>设置</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,11 +62,16 @@
                                             @endphp
                                         </td>
                                         <td>{{$v['created_at']}}</td>
+                                        @if(in_array(config('permissions.Diary'),$permission))
                                         <td>
-                                            {{--<span title="修改信息" onclick="updateNav('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench" style="font-size: 24px;"></i> </span>--}}
+                                            @if(in_array(config('permissions.editDiary'),$permission))
                                             <a class="btn btn-xs btn-info" title="修改信息" href="{{url('admin/diary')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench"></i> 修改</a>
+                                            @endif
+                                            @if(in_array(config('permissions.destroyDiary'),$permission))
                                             <span class="btn btn-xs btn-danger" title="删除类别" onclick="deleteDiary('{{$v['id']}}')"><i class="fa fa-trash-o"></i> 删除</span>
+                                            @endif
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

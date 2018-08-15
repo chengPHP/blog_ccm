@@ -7,6 +7,7 @@ use App\Models\Permission_role;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -17,6 +18,7 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+
         if($request->search){
             $search = $request->search;
             $map = [

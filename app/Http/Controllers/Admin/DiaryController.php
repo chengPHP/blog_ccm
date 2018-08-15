@@ -30,7 +30,8 @@ class DiaryController extends Controller
             ];
         }
         $list = Diary::where($map)->with('user')->paginate(config("program.PAGE_SIZE"));
-        return view('admin.diary.index',compact('list','search'));
+        $permission = get_user_permission();
+        return view('admin.diary.index',compact('list','search','permission'));
     }
 
     /**
@@ -52,7 +53,7 @@ class DiaryController extends Controller
     public function store(DiaryRequest $request)
     {
         $diary = new Diary();
-        $diary->user_id = Auth::user()->id;
+        $diary->user_id = auth()->id;
         $diary->status = $request->status;
         $diary->art = $request->editorValue;
         if($diary->save()){

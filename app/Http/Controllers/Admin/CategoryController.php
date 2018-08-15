@@ -30,7 +30,8 @@ class CategoryController extends Controller
             ];
         }
         $list = Category::where($map)->paginate(config("program.PAGE_SIZE"));
-        return view('admin.category.index',compact('list','search'));
+        $permission = get_user_permission();
+        return view('admin.category.index',compact('list','search','permission'));
     }
 
     /**

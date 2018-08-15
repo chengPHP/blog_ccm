@@ -28,7 +28,9 @@ class FeedbackController extends Controller
             ];
         }
         $list = Feedback::where($map)->paginate(config("program.PAGE_SIZE"));
-        return view('admin.feedback.index',compact('list','search'));
+
+        $permission = get_user_permission();
+        return view('admin.feedback.index',compact('list','search','permission'));
     }
 
     /**

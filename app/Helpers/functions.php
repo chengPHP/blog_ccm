@@ -161,3 +161,25 @@ if(!function_exists("role_select")){
         return $str;
     }
 }
+
+/*
+ * 二维数组合并转成一维数组 然后去重
+ * */
+if(!function_exists("get_user_permission")){
+    function get_user_permission() {
+
+        //当前用户的permission
+        $user = \App\User::where("id",auth()->id())->with("roles.permission")->first();
+        $arr = [];
+        foreach ($user->roles as $k=>$v){
+            $arr[] = $v->permission->pluck("name")->all();
+        }
+
+        $result = array_reduce($arr, function ($result, $value) {
+            return array_merge($result, array_values($value));
+        }, array());
+
+        return array_unique($result);
+
+    }
+}

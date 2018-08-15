@@ -14,9 +14,12 @@
 
                     <div class="ibox-title">
                         {{--<h5>用户管理列表</h5>--}}
-                        <button onclick="add()" class="btn btn-m btn-primary" id="add-btn" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-plus"></i> 添加</button>
-                        <button onclick="delUsers()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
-
+                        @if(in_array(config('permissions.createUser'),$permission))
+                            <button onclick="add()" class="btn btn-m btn-primary" id="add-btn" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-plus"></i> 添加</button>
+                        @endif
+                        @if(in_array(config('permissions.destroyUser'),$permission))
+                            <button onclick="delUsers()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
+                        @endif
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="邮箱" value="{{$search}}" class="form-control">
@@ -26,7 +29,6 @@
                                 </span>
                             </div>
                         </div>
-
                     </div>
                     <div class="ibox-content">
                         <table class="table table-bordered">
@@ -38,7 +40,9 @@
                                     <th>姓名</th>
                                     <th>手机号</th>
                                     <th>邮箱</th>
+                                    @if(in_array(config('permissions.User'),$permission))
                                     <th>设置</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,10 +60,16 @@
                                         <td>{{$v['name']}}</td>
                                         <td>{{$v['phone']?$v['phone']:'暂无'}}</td>
                                         <td>{{$v['email']}}</td>
+                                        @if(in_array(config('permissions.User'),$permission))
                                         <td>
-                                            <span class="btn btn-xs btn-info" title="修改信息" onclick="updateUser('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench"></i> 修改</span>
-                                            <span class="btn btn-xs btn-danger" title="删除用户" onclick="deleteUser('{{$v['id']}}')"><i class="fa fa-trash-o" ></i> 删除</span>
+                                            @if(in_array(config('permissions.editUser'),$permission))
+                                                <span class="btn btn-xs btn-info" title="修改信息" onclick="updateUser('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench"></i> 修改</span>
+                                            @endif
+                                            @if(in_array(config('permissions.destroyUser'),$permission))
+                                                <span class="btn btn-xs btn-danger" title="删除用户" onclick="deleteUser('{{$v['id']}}')"><i class="fa fa-trash-o" ></i> 删除</span>
+                                            @endif
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -70,15 +80,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        /*$(document).ready(function(){
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-        });*/
-    </script>
 
     <script type="text/javascript" >
 

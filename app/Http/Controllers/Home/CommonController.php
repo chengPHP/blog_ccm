@@ -11,7 +11,6 @@ class CommonController extends Controller
 {
     function __construct()
     {
-
         $list = Nav::where(['status'=>1])->get()->toArray();
         $navs = list_to_tree($list);
         View::share('navs',$navs);

@@ -30,7 +30,8 @@ class NavController extends Controller
             ];
         }
         $list = Nav::where($map)->orderBy("orders",'asc')->paginate(config("program.PAGE_SIZE"));
-        return view('admin.nav.index',compact('list','search'));
+        $permission = get_user_permission();
+        return view('admin.nav.index',compact('list','search','permission'));
     }
 
     /**

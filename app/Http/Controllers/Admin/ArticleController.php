@@ -31,7 +31,8 @@ class ArticleController extends Controller
             ];
         }
         $list = Article::with('user','category','files')->where($map)->paginate(config("program.PAGE_SIZE"));
-        return view('admin.article.index',compact('list','search'));
+        $permission = get_user_permission();
+        return view('admin.article.index',compact('list','search','permission'));
     }
 
     /**
