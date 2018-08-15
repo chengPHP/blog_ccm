@@ -34,8 +34,7 @@ class ArticleController extends controller
             ];
         }
         $list = Article::with('user','category','files')->where($map)->paginate(config("program.PAGE_SIZE"));
-        $permission = get_user_permission();
-        return view('admin.article.index',compact('list','search','permission'));
+        return view('admin.article.index',compact('list','search'));
     }
 
     /**
@@ -49,8 +48,7 @@ class ArticleController extends controller
             return view(config('program.no_permission_to_view'));
         }
         $category = Category::all();
-        $permission = get_user_permission();
-        return view('admin.article.add',compact('category','permission'));
+        return view('admin.article.add',compact('category'));
     }
 
     /**

@@ -32,8 +32,7 @@ class PermissionController extends Controller
             ];
         }
         $list = Permission::where($map)->paginate(config("program.PAGE_SIZE"));
-        $permission = get_user_permission();
-        return view("admin.permission.index",compact('list','search','permission'));
+        return view("admin.permission.index",compact('list','search'));
     }
 
     /**

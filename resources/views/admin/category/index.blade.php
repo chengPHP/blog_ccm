@@ -13,12 +13,12 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{--<h5>类别管理列表</h5>--}}
-                        @if(in_array(config('permissions.createCategory'),$permission))
+                        @permission('create.category')
                         <button onclick="add()" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</button>
-                        @endif
-                        @if(in_array(config('permissions.destroyCategory'),$permission))
+                        @endpermission
+                        @permission('destroy.category')
                         <button onclick="delCategories()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
-                        @endif
+                        @endpermission
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="类别名称" value="{{$search}}" class="form-control">
@@ -39,9 +39,9 @@
                                     <th>状态</th>
                                     <th>类别名称</th>
                                     <th>父级名称</th>
-                                    @if(in_array(config('permissions.Category'),$permission))
+                                    @permission('category')
                                     <th>设置</th>
-                                    @endif
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,16 +58,16 @@
                                         </td>
                                         <td>{{$v['name']}}</td>
                                         <td>{{$v['pid']}}</td>
-                                        @if(in_array(config('permissions.Category'),$permission))
+                                        @permission('category')
                                         <td>
-                                            @if(in_array(config('permissions.editCategory'),$permission))
+                                            @permission('edit.category')
                                             <span class="btn btn-xs btn-info" title="修改信息" onclick="updateCategory('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench"></i> 修改</span>
-                                            @endif
-                                            @if(in_array(config('permissions.destroyCategory'),$permission))
+                                            @endpermission
+                                            @permission('destroy.category')
                                             <span class="btn btn-xs btn-danger" title="删除类别" onclick="deleteCategory('{{$v['id']}}')"><i class="fa fa-trash-o" ></i> 删除</span>
-                                            @endif
+                                            @endpermission
                                         </td>
-                                        @endif
+                                        @endpermission
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -13,12 +13,12 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{--<h5>导航栏管理列表</h5>--}}
-                        @if(in_array(config('permissions.createArticle'),$permission))
+                        @permission('create.nav')
                         <button onclick="add()" data-toggle="modal" data-target=".bs-example-modal-md" class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</button>
-                        @endif
-                        @if(in_array(config('permissions.destroyArticle'),$permission))
+                        @endpermission
+                        @permission('destroy.nav')
                         <button onclick="delNavs()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
-                        @endif
+                        @endpermission
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="导航栏名称" value="{{$search}}" class="form-control">
@@ -42,9 +42,9 @@
                                     <th>超链接</th>
                                     <th>父级菜单</th>
                                     <th>排序</th>
-                                    @if(in_array(config('permissions.Article'),$permission))
+                                    @permission('nav')
                                     <th>设置</th>
-                                    @endif
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,16 +64,16 @@
                                         <td><a href="{{url($v['url'])}}" target="_blank" >{{url($v['url'])}}</a></td>
                                         <td>{{$v['pid']}}</td>
                                         <td>{{$v['orders']}}</td>
-                                        @if(in_array(config('permissions.Article'),$permission))
+                                        @permission('nav')
                                         <td>
-                                            @if(in_array(config('permissions.editArticle'),$permission))
+                                            @permission('edit.nav')
                                             <span class="btn btn-xs btn-info" title="修改信息" onclick="updateNav('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench"></i> 修改</span>
-                                            @endif
-                                            @if(in_array(config('permissions.destroyArticle'),$permission))
+                                            @endpermission
+                                            @permission('destroy.nav')
                                             <span class="btn btn-xs btn-danger" title="删除类别" onclick="deleteNav('{{$v['id']}}')"><i class="fa fa-trash-o"></i> 删除</span>
-                                            @endif
+                                            @endpermission
                                         </td>
-                                        @endif
+                                        @endpermission
                                     </tr>
                                 @endforeach
                             </tbody>

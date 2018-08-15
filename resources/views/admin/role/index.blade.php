@@ -14,9 +14,12 @@
 
                     <div class="ibox-title">
                         {{--<h5>角色管理列表</h5>--}}
+                        @permission('create.role')
                         <button onclick="add()" class="btn btn-m btn-primary" id="add-btn" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-plus"></i> 添加</button>
+                        @endpermission
+                        @permission('destroy.role')
                         <button onclick="delRoles()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
-
+                        @endpermission
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="角色名称" value="{{$search}}" class="form-control">
@@ -38,7 +41,9 @@
                                     <th>name</th>
                                     <th>display_name</th>
                                     <th>description</th>
+                                    @permission('role')
                                     <th>设置</th>
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,10 +61,16 @@
                                         <td>{{$v['name']}}</td>
                                         <td>{{$v['display_name']?$v['display_name']:'暂无'}}</td>
                                         <td>{{$v['description']?$v['description']:'暂无'}}</td>
+                                        @permission('role')
                                         <td>
+                                            @permission('edit.role')
                                             <span class="btn btn-xs btn-info" title="修改角色信息" onclick="updateRole('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench"></i> 修改</span>
+                                            @endpermission
+                                            @permission('destroy.role')
                                             <span class="btn btn-xs btn-danger" title="删除角色" onclick="deleteRole('{{$v['id']}}')"><i class="fa fa-trash-o" ></i> 删除</span>
+                                            @endpermission
                                         </td>
+                                        @endpermission
                                     </tr>
                                 @endforeach
                             </tbody>

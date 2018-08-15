@@ -13,12 +13,12 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{--<h5>文章管理列表</h5>--}}
-                        @if(in_array(config('permissions.createArticle'),$permission))
+                        @permission('create.article')
                         <a href="{{ url('admin/article/create') }}"  class="btn btn-m btn-primary" id="add-btn"><i class="fa fa-plus"></i> 添加</a>
-                        @endif
-                        @if(in_array(config('permissions.destroyArticle'),$permission))
+                        @endpermission
+                        @permission('destroy.article')
                         <button onclick="delArticles()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
-                        @endif
+                        @endpermission
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="文章标题名称" value="{{$search}}" class="form-control">
@@ -43,9 +43,9 @@
                                     <th>作者</th>
                                     <th>图片</th>
                                     <th>阅读量</th>
-                                    @if(in_array(config('permissions.Article'),$permission))
+                                    @permission('article')
                                     <th>设置</th>
-                                    @endif
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,16 +72,16 @@
                                             @endforeach
                                         </td>
                                         <td>{{$v['read_num']}}</td>
-                                        @if(in_array(config('permissions.Article'),$permission))
+                                        @permission('article')
                                         <td>
-                                            @if(in_array(config('permissions.editArticle'),$permission))
+                                            @permission('edit.article')
                                             <a class="btn btn-xs btn-info" title="修改信息" href="{{url('admin/article')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench"></i> 修改</a>
-                                            @endif
-                                            @if(in_array(config('permissions.destroyArticle'),$permission))
+                                            @endpermission
+                                            @permission('destroy.article')
                                             <span class="btn btn-xs btn-danger" title="删除文章" onclick="deleteArticle('{{$v['id']}}')"><i class="fa fa-trash-o"></i> 删除</span>
-                                            @endif
+                                            @endpermission
                                         </td>
-                                        @endif
+                                        @endpermission
                                     </tr>
                                 @endforeach
                             </tbody>

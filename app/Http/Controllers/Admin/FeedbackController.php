@@ -32,8 +32,7 @@ class FeedbackController extends Controller
         }
         $list = Feedback::where($map)->paginate(config("program.PAGE_SIZE"));
 
-        $permission = get_user_permission();
-        return view('admin.feedback.index',compact('list','search','permission'));
+        return view('admin.feedback.index',compact('list','search'));
     }
 
     /**
@@ -46,8 +45,7 @@ class FeedbackController extends Controller
         if(no_permission('createFeedback')){
             return view(config('program.no_permission_to_view'));
         }
-        $permission = get_user_permission();
-        return view('admin.feedback.add',compact('permission'));
+        return view('admin.feedback.add');
     }
 
     /**
@@ -148,8 +146,7 @@ class FeedbackController extends Controller
             return view(config('program.no_permission_to_view'));
         }
         $info = Feedback::find($id);
-        $permission = get_user_permission();
-        return view('admin.feedback.reply',compact('info','permission'));
+        return view('admin.feedback.reply',compact('info'));
     }
 
     public function replyStore(Request $request)

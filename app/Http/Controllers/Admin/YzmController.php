@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\VerificationCode;
-use Barryvdh\Debugbar\DataCollector\SessionCollector;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Session;
 use Ucpaas;
 
 class YzmController extends Controller
@@ -49,9 +48,6 @@ class YzmController extends Controller
         $result = $ucpass->SendSms($appid,$templateid,$param,$mobile,$uid);
 
         return response($result);
-
-//        $result = ['code' => '000000'];
-//        return response()->json($result);
     }
 
 

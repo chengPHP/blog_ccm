@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -25,7 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $permission = get_user_permission();
-        return view('admin.index',compact('permission'));
+        return view('admin.index');
     }
 }

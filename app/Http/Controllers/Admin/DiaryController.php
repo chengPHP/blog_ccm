@@ -44,11 +44,10 @@ class DiaryController extends Controller
      */
     public function create()
     {
-//        if(no_permission('createDiary')){
-//            return view(config('program.no_permission_to_view'));
-//        }
-        $permission = get_user_permission();
-        return view('admin.diary.add',compact("permission"));
+        if(no_permission('createDiary')){
+            return view(config('program.no_permission_to_view'));
+        }
+        return view('admin.diary.add');
     }
 
     /**

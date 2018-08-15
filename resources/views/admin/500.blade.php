@@ -5,8 +5,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | 500 Error</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('home/images/laozhang_avatar.png')}}" >
+    <title>权限不足</title>
 
     <link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -20,7 +20,7 @@
 
 
 <div class="middle-box text-center animated fadeInDown">
-    <h1>500</h1>
+    <h2>权限不足</h2>
     <h3 class="font-bold">Internal Server Error</h3>
 
     <div class="error-desc">

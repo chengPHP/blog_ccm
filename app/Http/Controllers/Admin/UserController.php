@@ -33,8 +33,7 @@ class UserController extends Controller
             ];
         }
         $list = User::where($map)->paginate(config("program.PAGE_SIZE"));
-        $permission = get_user_permission();
-        return view("admin.user.index",compact('list','search','permission'));
+        return view("admin.user.index",compact('list','search'));
     }
 
     /**

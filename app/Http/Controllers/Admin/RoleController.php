@@ -34,8 +34,7 @@ class RoleController extends Controller
             ];
         }
         $list = Role::where($map)->paginate(config("program.PAGE_SIZE"));
-        $permission = get_user_permission();
-        return view("admin.role.index",compact('list','search','permission'));
+        return view("admin.role.index",compact('list','search'));
     }
 
     /**
@@ -190,7 +189,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        if(no_permission('destroyRole')){
+        if(no_permission('Role')){
             return view(config('program.no_permission_to_view'));
         }
     }

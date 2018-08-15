@@ -22,16 +22,16 @@ Route::group(['prefix'=>'cheng'],function () {
 });
 
 //获取验证码操作部分
-Route::group(['prefix'=>'cheng'],function () {
+Route::group(['prefix'=>'cheng','namespace'=>'Admin'],function () {
     Route::post('sendMsg', 'YzmController@sendMsg')->name('sendMsg');
 });
 
-
-Route::get('admin/home', 'HomeController@index');
-
-
 //后台
+
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function (){
+
+    Route::get('home', 'HomeController@index');
+
     //角色管理
     Route::resource('role','RoleController');
     //权限管理

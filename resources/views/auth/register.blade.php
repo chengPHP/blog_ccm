@@ -143,8 +143,12 @@
                         if(data.code=="000000"){
                             btn.val(countdown+"S");
                             btn.attr("disabled",true);
-                            countdown--;
                         }
+                    },
+                    complete: function () {
+                        btn.val(countdown+"S");
+                        btn.attr("disabled",true);
+                        countdown--;
                     }
                 });
             }else if(countdown>0){

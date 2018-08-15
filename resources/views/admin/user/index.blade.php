@@ -14,12 +14,12 @@
 
                     <div class="ibox-title">
                         {{--<h5>用户管理列表</h5>--}}
-                        @if(in_array(config('permissions.createUser'),$permission))
+                        @permission("create.user")
                             <button onclick="add()" class="btn btn-m btn-primary" id="add-btn" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-plus"></i> 添加</button>
-                        @endif
-                        @if(in_array(config('permissions.destroyUser'),$permission))
+                        @endpermission
+                        @permission("destroy.user")
                             <button onclick="delUsers()" class="btn btn-m btn-danger" id="add-btn"><i class="fa fa-trash-o"></i> 删除</button>
-                        @endif
+                        @endpermission
                         <div class="col-sm-5" style="float: right;" >
                             <div class="input-group">
                                 <input type="text" id="search-text" placeholder="邮箱" value="{{$search}}" class="form-control">
@@ -40,9 +40,9 @@
                                     <th>姓名</th>
                                     <th>手机号</th>
                                     <th>邮箱</th>
-                                    @if(in_array(config('permissions.User'),$permission))
+                                    @permission("user")
                                     <th>设置</th>
-                                    @endif
+                                    @endpermission
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,16 +60,16 @@
                                         <td>{{$v['name']}}</td>
                                         <td>{{$v['phone']?$v['phone']:'暂无'}}</td>
                                         <td>{{$v['email']}}</td>
-                                        @if(in_array(config('permissions.User'),$permission))
+                                        @permission("user")
                                         <td>
-                                            @if(in_array(config('permissions.editUser'),$permission))
+                                            @permission("edit.user")
                                                 <span class="btn btn-xs btn-info" title="修改信息" onclick="updateUser('{{$v['id']}}')" data-toggle="modal" data-target=".bs-example-modal-md"><i class="fa fa-wrench"></i> 修改</span>
-                                            @endif
-                                            @if(in_array(config('permissions.destroyUser'),$permission))
+                                            @endpermission
+                                            @permission("destroy.user")
                                                 <span class="btn btn-xs btn-danger" title="删除用户" onclick="deleteUser('{{$v['id']}}')"><i class="fa fa-trash-o" ></i> 删除</span>
-                                            @endif
+                                            @endpermission
                                         </td>
-                                        @endif
+                                        @endpermission
                                     </tr>
                                 @endforeach
                             </tbody>
