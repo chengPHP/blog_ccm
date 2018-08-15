@@ -6,10 +6,10 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
-class ArticleController extends Controller
+class ArticleController extends controller
 {
     /**
      * Display a listing of the resource.
@@ -18,6 +18,9 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
+        if(no_permission('Article')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -42,8 +45,12 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        if(no_permission('createArticle')){
+            return view(config('program.no_permission_to_view'));
+        }
         $category = Category::all();
-        return view('admin.article.add',compact('category'));
+        $permission = get_user_permission();
+        return view('admin.article.add',compact('category','permission'));
     }
 
     /**
@@ -54,6 +61,9 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+        if(no_permission('createArticle')){
+            return view(config('program.no_permission_to_view'));
+        }
         $article = new Article();
         $article->title = $request->title;
         $article->category_id = $request->category_id;
@@ -89,6 +99,9 @@ class ArticleController extends Controller
     public function show($id)
     {
         //
+        if(no_permission('showArticle')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -99,6 +112,9 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editArticle')){
+            return view(config('program.no_permission_to_view'));
+        }
         $info = Article::with("user",'category')->find($id);
         $category = Category::all();
         return view("admin.article.edit",compact('info','category'));
@@ -113,7 +129,9 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, $id)
     {
-        $article = new Article();
+        if(no_permission('editArticle')){
+            return view(config('program.no_permission_to_view'));
+        }
         $arr = [
             'title' => $request->title,
             'category_id' => $request->category_id,
@@ -147,6 +165,9 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
+        if(no_permission('destroyArticle')){
+            return view(config('program.no_permission_to_view'));
+        }
         //把ids字符串拆分成数组
         $idArr = explode(",",$id);
         foreach ($idArr as $v){

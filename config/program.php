@@ -11,5 +11,7 @@ return [
     'PAGE_SIZE' => 5,
     'title' => 'CCM 个人博客',
     //短信验证码有效时间 单位：S
-    'ACTIVE_TIME' => '60'
+    'ACTIVE_TIME' => '60',
+    //无权限默认跳转页面
+    'no_permission_to_view' => 'admin.500'
 ];

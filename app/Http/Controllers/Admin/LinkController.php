@@ -16,6 +16,9 @@ class LinkController extends Controller
      */
     public function index(Request $request)
     {
+        if(no_permission('Link')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -40,6 +43,9 @@ class LinkController extends Controller
      */
     public function create()
     {
+        if(no_permission('createLink')){
+            return view(config('program.no_permission_to_view'));
+        }
         return view('admin.link.add');
     }
 
@@ -51,6 +57,9 @@ class LinkController extends Controller
      */
     public function store(LinkRequest $request)
     {
+        if(no_permission('createLink')){
+            return view(config('program.no_permission_to_view'));
+        }
         $link = new Link();
         $link->name = $request->name;
         $link->title = $request->title;
@@ -79,7 +88,9 @@ class LinkController extends Controller
      */
     public function show($id)
     {
-        //
+        if(no_permission('showLink')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -90,6 +101,9 @@ class LinkController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editLink')){
+            return view(config('program.no_permission_to_view'));
+        }
         $info = Link::find($id);
         return view('admin.link.edit',compact('info'));
     }
@@ -103,6 +117,9 @@ class LinkController extends Controller
      */
     public function update(LinkRequest $request, $id)
     {
+        if(no_permission('editLink')){
+            return view(config('program.no_permission_to_view'));
+        }
         $arr = $request->except('_token','_method');
         if(Link::where("id",$id)->update($arr)){
             $message = [
@@ -126,6 +143,9 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
+        if(no_permission('destroyLink')){
+            return view(config('program.no_permission_to_view'));
+        }
         //把ids字符串拆分成数组
         $idArr = explode(",",$id);
         foreach ($idArr as $v) {

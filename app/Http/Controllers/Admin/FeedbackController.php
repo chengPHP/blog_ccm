@@ -15,6 +15,9 @@ class FeedbackController extends Controller
      */
     public function index(Request $request)
     {
+        if(no_permission('Feedback')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -40,7 +43,11 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        return view('admin.feedback.add');
+        if(no_permission('createFeedback')){
+            return view(config('program.no_permission_to_view'));
+        }
+        $permission = get_user_permission();
+        return view('admin.feedback.add',compact('permission'));
     }
 
     /**
@@ -51,6 +58,9 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
+        if(no_permission('createFeedback')){
+            return view(config('program.no_permission_to_view'));
+        }
         $feedback = new Feedback();
         $feedback->content = $request->editorValue;
         $feedback->status = $request->status;
@@ -81,7 +91,9 @@ class FeedbackController extends Controller
      */
     public function show($id)
     {
-        //
+        if(no_permission('showFeedback')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -92,6 +104,9 @@ class FeedbackController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editFeedback')){
+            return view(config('program.no_permission_to_view'));
+        }
         $info = Feedback::find($id);
         return view('admin.feedback.edit',compact('info'));
     }
@@ -105,6 +120,9 @@ class FeedbackController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(no_permission('editFeedback')){
+            return view(config('program.no_permission_to_view'));
+        }
         $arr = [
             'content' => $request->editorValue,
             'status' => $request->status
@@ -126,12 +144,19 @@ class FeedbackController extends Controller
 
     public function reply($id)
     {
+        if(no_permission('replyFeedback')){
+            return view(config('program.no_permission_to_view'));
+        }
         $info = Feedback::find($id);
-        return view('admin.feedback.reply',compact('info'));
+        $permission = get_user_permission();
+        return view('admin.feedback.reply',compact('info','permission'));
     }
 
     public function replyStore(Request $request)
     {
+        if(no_permission('replyFeedback')){
+            return view(config('program.no_permission_to_view'));
+        }
         $feedback = new Feedback();
         $feedback->pid = $request->pid;
         $feedback->content = $request->editorValue;
@@ -159,7 +184,9 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-
+        if(no_permission('destroyFeedback')){
+            return view(config('program.no_permission_to_view'));
+        }
         //把ids字符串拆分成数组
         $idArr = explode(",",$id);
         foreach ($idArr as $v){

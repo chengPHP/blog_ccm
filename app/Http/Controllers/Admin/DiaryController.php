@@ -17,6 +17,9 @@ class DiaryController extends Controller
      */
     public function index(Request $request)
     {
+        if(no_permission('Diary')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -41,7 +44,11 @@ class DiaryController extends Controller
      */
     public function create()
     {
-        return view('admin.diary.add');
+//        if(no_permission('createDiary')){
+//            return view(config('program.no_permission_to_view'));
+//        }
+        $permission = get_user_permission();
+        return view('admin.diary.add',compact("permission"));
     }
 
     /**
@@ -52,6 +59,9 @@ class DiaryController extends Controller
      */
     public function store(DiaryRequest $request)
     {
+        if(no_permission('createDiary')){
+            return view(config('program.no_permission_to_view'));
+        }
         $diary = new Diary();
         $diary->user_id = auth()->id;
         $diary->status = $request->status;
@@ -78,7 +88,9 @@ class DiaryController extends Controller
      */
     public function show($id)
     {
-        //
+        if(no_permission('showDiary')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -89,6 +101,9 @@ class DiaryController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editDiary')){
+            return view(config('program.no_permission_to_view'));
+        }
         $info = Diary::where("id",$id)->with('user')->first();
         return view('admin.diary.edit',compact('info'));
     }
@@ -102,11 +117,14 @@ class DiaryController extends Controller
      */
     public function update(DiaryRequest $request, $id)
     {
+        if(no_permission('editDiary')){
+            return view(config('program.no_permission_to_view'));
+        }
         $arr = [
             'art'=>$request->editorValue,
             'status' => $request->status
         ];
-        if(Diary::where("id",$id)->update()){
+        if(Diary::where("id",$id)->update($arr)){
             $message = [
                 'code' => 1,
                 'message' => '日记信息修改成功'
@@ -128,6 +146,9 @@ class DiaryController extends Controller
      */
     public function destroy($id)
     {
+        if(no_permission('destroyDiary')){
+            return view(config('program.no_permission_to_view'));
+        }
         //把ids字符串拆分成数组
         $idArr = explode(",",$id);
         foreach ($idArr as $v) {

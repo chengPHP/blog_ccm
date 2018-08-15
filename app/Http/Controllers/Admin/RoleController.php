@@ -18,7 +18,9 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-
+        if(no_permission('Role')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -32,7 +34,8 @@ class RoleController extends Controller
             ];
         }
         $list = Role::where($map)->paginate(config("program.PAGE_SIZE"));
-        return view("admin.role.index",compact('list','search'));
+        $permission = get_user_permission();
+        return view("admin.role.index",compact('list','search','permission'));
     }
 
     /**
@@ -42,6 +45,9 @@ class RoleController extends Controller
      */
     public function create()
     {
+        if(no_permission('createRole')){
+            return view(config('program.no_permission_to_view'));
+        }
         //权限列表
         $permissions = Permission::get();
         return view("admin.role.add",compact("permissions"));
@@ -55,6 +61,9 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        if(no_permission('createRole')){
+            return view(config('program.no_permission_to_view'));
+        }
         $role = new Role();
         $role->name = $request->name;
         $role->display_name = $request->display_name;
@@ -94,7 +103,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        if(no_permission('showRole')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -105,10 +116,12 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editRole')){
+            return view(config('program.no_permission_to_view'));
+        }
         //权限列表
         $permissions = Permission::get();
         $info = Role::where("id",$id)->with("permission")->first();
-
 
         $arr = $info->permission->pluck('id')->all();
 
@@ -131,6 +144,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(no_permission('editRole')){
+            return view(config('program.no_permission_to_view'));
+        }
         $role = Role::find($id);
         $role->name = $request->name;
         $role->display_name = $request->display_name;
@@ -174,6 +190,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(no_permission('destroyRole')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 }

@@ -16,6 +16,9 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
+        if(no_permission('Permission')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -29,7 +32,8 @@ class PermissionController extends Controller
             ];
         }
         $list = Permission::where($map)->paginate(config("program.PAGE_SIZE"));
-        return view("admin.permission.index",compact('list','search'));
+        $permission = get_user_permission();
+        return view("admin.permission.index",compact('list','search','permission'));
     }
 
     /**
@@ -39,6 +43,9 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        if(no_permission('createPermission')){
+            return view(config('program.no_permission_to_view'));
+        }
         return view("admin.permission.add");
     }
 
@@ -50,6 +57,9 @@ class PermissionController extends Controller
      */
     public function store(PermissionRequest $request)
     {
+        if(no_permission('createPermission')){
+            return view(config('program.no_permission_to_view'));
+        }
         $permission = new Permission();
         $permission->name = $request->name;
         if($request->display_name){
@@ -86,7 +96,9 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        //
+        if(no_permission('showPermission')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -97,6 +109,9 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editPermission')){
+            return view(config('program.no_permission_to_view'));
+        }
         $info = Permission::find($id);
         return view("admin.permission.edit",compact("info"));
     }
@@ -110,6 +125,9 @@ class PermissionController extends Controller
      */
     public function update(PermissionRequest $request, $id)
     {
+        if(no_permission('editPermission')){
+            return view(config('program.no_permission_to_view'));
+        }
         $permission = Permission::find($id);
 
         $permission->name = $request->name;
@@ -146,6 +164,9 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
+        if(no_permission('destroyPermission')){
+            return view(config('program.no_permission_to_view'));
+        }
         $list = Permission::where("pid",$id)->get()->toArray();
         if(count($list)>0){
             $message = [

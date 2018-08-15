@@ -16,7 +16,9 @@ class NavController extends Controller
      */
     public function index(Request $request)
     {
-
+        if(no_permission('Nav')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -41,6 +43,9 @@ class NavController extends Controller
      */
     public function create()
     {
+        if(no_permission('createNav')){
+            return view(config('program.no_permission_to_view'));
+        }
         $map = [
             ['status',">=",0]
         ];
@@ -56,6 +61,9 @@ class NavController extends Controller
      */
     public function store(NavRequest $request)
     {
+        if(no_permission('createNav')){
+            return view(config('program.no_permission_to_view'));
+        }
         $nav = new Nav();
         $nav->name = $request->name;
         $nav->alias = $request->alias;
@@ -92,7 +100,9 @@ class NavController extends Controller
      */
     public function show($id)
     {
-        //
+        if(no_permission('showNav')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -103,6 +113,9 @@ class NavController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editNav')){
+            return view(config('program.no_permission_to_view'));
+        }
         $info = Nav::find($id);
         $map = [
             ['status',">=",0]
@@ -120,6 +133,9 @@ class NavController extends Controller
      */
     public function update(NavRequest $request, $id)
     {
+        if(no_permission('editNav')){
+            return view(config('program.no_permission_to_view'));
+        }
         $arr = [
             'name' => $request->name,
             'alias' => $request->alias,
@@ -157,6 +173,9 @@ class NavController extends Controller
      */
     public function destroy($id)
     {
+        if(no_permission('destroyNav')){
+            return view(config('program.no_permission_to_view'));
+        }
         //把ids字符串拆分成数组
         $idArr = explode(",",$id);
         foreach ($idArr as $v){

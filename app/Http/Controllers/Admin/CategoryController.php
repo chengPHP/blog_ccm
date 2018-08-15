@@ -17,6 +17,9 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
+        if(no_permission('Category')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -41,6 +44,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        if(no_permission('createCategory')){
+            return view(config('program.no_permission_to_view'));
+        }
         $list = Category::get();
         return view('admin.category.add',compact('list'));
     }
@@ -53,6 +59,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        if(no_permission('createCategory')){
+            return view(config('program.no_permission_to_view'));
+        }
         $category = new Category();
         $category->name = $request->name;
         $category->pid = $request->pid;
@@ -86,7 +95,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        if(no_permission('showCategory')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -97,6 +108,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editCategory')){
+            return view(config('program.no_permission_to_view'));
+        }
         $info = Category::find($id);
         $list = Category::all();
         return view("admin.category.edit",compact('info','list'));
@@ -111,6 +125,9 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
+        if(no_permission('editCategory')){
+            return view(config('program.no_permission_to_view'));
+        }
         $arr = [
             'name' => $request->name,
             'pid' => $request->pid
@@ -145,6 +162,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        if(no_permission('destroyCategory')){
+            return view(config('program.no_permission_to_view'));
+        }
         //把ids字符串拆分成数组
         $idArr = explode(",",$id);
         $message = [];

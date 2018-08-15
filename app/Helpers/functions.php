@@ -178,8 +178,19 @@ if(!function_exists("get_user_permission")){
         $result = array_reduce($arr, function ($result, $value) {
             return array_merge($result, array_values($value));
         }, array());
-
         return array_unique($result);
+    }
+}
 
+/*
+ * 没有权限
+ * */
+
+if(!function_exists("no_permission")){
+    function no_permission($permission)
+    {
+        if(!\Illuminate\Support\Facades\Auth::user()->can(config('permissions.'.$permission))){
+            return true;
+        }
     }
 }

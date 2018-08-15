@@ -9,10 +9,10 @@
     <title>INSPINIA | 500 Error</title>
 
     <link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/font-awesome/css/font-awesome.css')}}'" rel="stylesheet">
+    <link href="{{asset('admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
     <link href="{{asset('admin/css/animate.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/css/style.css')}}'" rel="stylesheet">
+    <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
 
 </head>
 
@@ -24,14 +24,14 @@
     <h3 class="font-bold">Internal Server Error</h3>
 
     <div class="error-desc">
-        The server encountered something unexpected that didn't allow it to complete the request. We apologize.<br/>
-        You can go back to main page: <br/><a href="{{url('admin/home')}}" class="btn btn-primary m-t">Dashboard</a>
+        抱歉，你没有此操作权限！
+        <br/><a href="{{url('admin/home')}}" class="btn btn-primary m-t">返回</a>
     </div>
 </div>
 
 <!-- Mainly scripts -->
 <script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>
-<script src="{{asset('admin/js/bootstrap.min.js')}}'"></script>
+<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
 
 </body>
 

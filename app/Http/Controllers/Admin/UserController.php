@@ -17,6 +17,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if(no_permission('User')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->search){
             $search = $request->search;
             $map = [
@@ -41,6 +44,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if(no_permission('createUser')){
+            return view(config('program.no_permission_to_view'));
+        }
         return view('admin.user.add');
     }
 
@@ -52,6 +58,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        if(no_permission('createUser')){
+            return view(config('program.no_permission_to_view'));
+        }
         $arr = [
             'name' => $request->name,
             'email' => $request->email,
@@ -93,7 +102,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        if(no_permission('showUser')){
+            return view(config('program.no_permission_to_view'));
+        }
     }
 
     /**
@@ -104,14 +115,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        if(no_permission('editUser')){
+            return view(config('program.no_permission_to_view'));
+        }
         $map = [
             'id' => $id
         ];
         $info = User::where($map)->with("roles")->where('status','>=',0)->first();
         if($info){
             return view('admin.user.edit',compact('info'));
-        }else{
-
         }
     }
 
@@ -124,6 +136,9 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+        if(no_permission('editUser')){
+            return view(config('program.no_permission_to_view'));
+        }
         if($request->password){
             $arr = $request->except('_token','_method','role_id','repassword');
         }else{
@@ -162,6 +177,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        if(no_permission('destroyUser')){
+            return view(config('program.no_permission_to_view'));
+        }
         //把ids字符串拆分成数组
         $idArr = explode(",",$id);
         foreach ($idArr as $v) {

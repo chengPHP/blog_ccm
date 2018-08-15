@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $permission = get_user_permission();
+        return view('admin.index',compact('permission'));
     }
 }
