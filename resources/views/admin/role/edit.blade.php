@@ -51,11 +51,11 @@
             <label class="col-sm-2 control-label">状态</label>
             <div class="col-sm-10">
                 <div class="radio radio-info radio-inline">
-                    <input type="radio" id="inlineRadio1" value="1" name="status" {{$info->status==1 ? 'checked': ''}}>
+                    <input class="icheck_input" type="radio" id="inlineRadio1" value="1" name="status" {{$info->status==1 ? 'checked': ''}}>
                     <label for="inlineRadio1">启用 </label>
                 </div>
                 <div class="radio radio-inline">
-                    <input type="radio" id="inlineRadio2" value="0" name="status" {{$info->status==0 ? 'checked': ''}}>
+                    <input class="icheck_input" type="radio" id="inlineRadio2" value="0" name="status" {{$info->status==0 ? 'checked': ''}}>
                     <label for="inlineRadio2">禁用 </label>
                 </div>
             </div>
@@ -67,6 +67,18 @@
     </div>
 </form>
 <script type="text/javascript">
+
+    //页面加载完成后初始化select2控件
+    $(document).ready(function() {
+        blog.handleSelect2();
+
+        $('.icheck_input').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
+        }).iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%'
+        });
+    });
 
     var powerSetting = {
         check: {

@@ -34,7 +34,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" onclick="sltAll(this)" ></th>
+                                    <th><input class="icheck_input_all" type="checkbox"></th>
                                     <th>id</th>
                                     <th>状态</th>
                                     <th>留言内容</th>
@@ -47,7 +47,7 @@
                             <tbody>
                                 @foreach($list as $v)
                                     <tr>
-                                        <td><input type="checkbox" value="{{$v['id']}}"></td>
+                                        <td><input class="icheck_input" type="checkbox" value="{{$v['id']}}"></td>
                                         <td>{{$v['id']}}</td>
                                         <td>
                                             @if($v['status']==0)
@@ -86,7 +86,26 @@
         </div>
     </div>
 
-    <script type="text/javascript" >
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('.icheck_input,.icheck_input_all').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
+            }).iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%'
+            });
+
+            //全选
+            $('.icheck_input_all').on('ifChecked', function(event){
+                $('.icheck_input').iCheck('check')
+            });
+
+            //全不选
+            $('.icheck_input_all').on('ifUnchecked', function(event){
+                $('.icheck_input').iCheck('uncheck')
+            });
+        });
         function updateFeedback(id) {
             $.ajax({
                 url: "{{url('admin/feedback')}}/"+id+'/edit',
@@ -99,15 +118,6 @@
                     $(".bs-example-modal-md .modal-content").html(data);
                 }
             });
-        }
-
-        //全选/全不选
-        function sltAll(object) {
-            if(object.checked){
-                $("table tbody input[type=checkbox]").attr("checked",true);
-            }else{
-                $("table tbody input[type=checkbox]").attr("checked",false);
-            }
         }
 
         function deleteItems(ids,url,title) {

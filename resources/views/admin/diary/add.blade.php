@@ -36,11 +36,11 @@
                                 <label class="col-sm-2 control-label">状态</label>
                                 <div class="col-sm-10">
                                     <div class="radio radio-info radio-inline">
-                                        <input type="radio" id="inlineRadio1" value="1" name="status" checked="">
+                                        <input class="icheck_input" type="radio" id="inlineRadio1" value="1" name="status" checked="">
                                         <label for="inlineRadio1">启用 </label>
                                     </div>
                                     <div class="radio radio-inline">
-                                        <input type="radio" id="inlineRadio2" value="0" name="status">
+                                        <input class="icheck_input" type="radio" id="inlineRadio2" value="0" name="status">
                                         <label for="inlineRadio2">禁用 </label>
                                     </div>
                                 </div>
@@ -57,6 +57,16 @@
     </div>
 
 <script type="text/javascript" >
+
+    $(document).ready(function() {
+        $('.icheck_input').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
+        }).iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%'
+        });
+    });
+
     function tijiao(obj) {
         $.ajax({
             type: "post",

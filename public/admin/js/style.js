@@ -3,8 +3,72 @@
  */
 var blog = function(){
 
+
+    var handleiCheck = function() {
+        if (!$().iCheck) {
+            return;
+        }
+
+        $('.radio_input').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
+        }).iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%'
+        });
+
+    };
+
+    var handleCheckAll = function(){
+        if (!$().iCheck) {
+            return;
+        }
+
+           $('.icheck_input_all').on('ifChecked', function(event){
+               $('.icheck_input').iCheck('check')
+           });
+
+        //全不选
+           $('.icheck_input_all').on('ifUnchecked', function(event){
+               $('.icheck_input').iCheck('uncheck')
+           });
+    };
+
+
     return {
 
+
+        //main function to initiate core javascript
+        init:function (){
+            handleiCheck();
+            handleCheckAll();
+        },
+        //main function to initiate core javascript after ajax complete
+        initAjax:function (){
+            handleiCheck();
+            handleCheckAll();
+        },
+
+        handleCheckAll : function(){
+            $('.icheck_input_all').on('ifChecked', function(event){
+                $('.icheck_input').iCheck('check')
+            });
+            //全不选
+            $('.icheck_input_all').on('ifUnchecked', function(event){
+                $('.icheck_input').iCheck('uncheck')
+            });
+        },
+
+        handleiCheck : function() {
+            if ($().iCheck()) {
+                $('.icheck_input').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function (event) {
+                }).iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%'
+                });
+            }
+
+        },
 
         loading: function (message) {
             $('body').loading({
@@ -87,4 +151,5 @@ var blog = function(){
 }();
 
 jQuery(document).ready(function() {
+    // blog.init();
 });

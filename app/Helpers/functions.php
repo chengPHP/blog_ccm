@@ -77,7 +77,7 @@ if (!function_exists('tree_to_list')) {
 if (!function_exists('get_rand_str')) {
     function get_rand_str($length)
     {
-        $str = 'abcdefghijklmnpqrstuvwxyz123456789';
+        $str = '0123456789';
         $len = strlen($str) - 1;
         $randstr = '';
         for ($i = 0; $i < $length; $i++) {

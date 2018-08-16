@@ -143,6 +143,9 @@
                         if(data.code=="000000"){
                             btn.val(countdown+"S");
                             btn.attr("disabled",true);
+                        }else{
+                            alert("短信发送异常，请检查输入手机号是否正确");
+                            return false;
                         }
                     },
                     complete: function () {

@@ -34,7 +34,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" onclick="sltAll(this)" ></th>
+                                    <th><input class="icheck_input_all" type="checkbox"></th>
                                     <th>id</th>
                                     <th>状态</th>
                                     <th>标题名称</th>
@@ -51,7 +51,7 @@
                             <tbody>
                                 @foreach($list as $v)
                                     <tr>
-                                        <td><input type="checkbox" value="{{$v['id']}}"></td>
+                                        <td><input class="icheck_input" type="checkbox" value="{{$v['id']}}"></td>
                                         <td>{{$v['id']}}</td>
                                         <td>
                                             @if($v['status']==0)
@@ -75,7 +75,7 @@
                                         @permission('article')
                                         <td>
                                             @permission('edit.article')
-                                            <a class="btn btn-xs btn-info" title="修改信息" href="{{url('admin/article')}}/{{$v['id']}}/edit" ><i class="fa fa-wrench"></i> 修改</a>
+                                            <a class="btn btn-xs btn-info" title="修改文章" href="{{url('admin/article/'.$v['id'].'/edit')}}" ><i class="fa fa-wrench"></i> 修改</a>
                                             @endpermission
                                             @permission('destroy.article')
                                             <span class="btn btn-xs btn-danger" title="删除文章" onclick="deleteArticle('{{$v['id']}}')"><i class="fa fa-trash-o"></i> 删除</span>
@@ -93,7 +93,27 @@
         </div>
     </div>
 
-    <script type="text/javascript" >
+    <script>
+
+        $(document).ready(function(){
+            $('.icheck_input,.icheck_input_all').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
+            }).iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%'
+            });
+
+            //全选
+            $('.icheck_input_all').on('ifChecked', function(event){
+                $('.icheck_input').iCheck('check')
+            });
+
+            //全不选
+            $('.icheck_input_all').on('ifUnchecked', function(event){
+                $('.icheck_input').iCheck('uncheck')
+            });
+        });
+
         function updateArticle(id) {
             $.ajax({
                 url: "{{url('admin/article')}}/"+id+'/edit',
