@@ -6,7 +6,6 @@ use App\Http\Requests\DiaryRequest;
 use App\Models\Diary;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class DiaryController extends Controller
 {

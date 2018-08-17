@@ -13,7 +13,7 @@ class RoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,36 @@ class RoleRequest extends FormRequest
      */
     public function rules()
     {
+        switch ($this->method()){
+            case 'GET':
+                break;
+            case 'DELETE':
+            {
+                return [];
+            }
+                break;
+            case 'POST':
+                return [
+                    'name'=>'required',
+                    'status'=>'required'
+                ];
+                break;
+            case 'PUT':
+                return [
+                    'name'=>'required',
+                    'status'=>'required'
+                ];
+            case 'PATCH':
+            default:break;
+        }
+
+    }
+
+    public function messages()
+    {
         return [
-            //
+            'name.required'=>'请输入角色名称',
+            'status.required'=>'请选择角色状态',
         ];
     }
 }

@@ -15,7 +15,6 @@ class FileController extends Controller
     //图片上传接口
     public function imageUpload(Request $request)
     {
-//        dd($request->all());
         //上传验证
         $rule = [
             'file' => 'bail|required|image|max:2048'
