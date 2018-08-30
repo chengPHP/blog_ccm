@@ -3,6 +3,20 @@
 <li class="{{ active_class(if_uri_pattern('admin/home')) }}">
     <a href="{{url('admin/home')}}"><i class="fa fa-desktop"></i> <span class="nav-label">控制面板</span></a>
 </li>
+
+<li class="{{ active_class(if_uri_pattern('admin/work*')) }}">
+    <a href="{{url('admin/work')}}"><i class="fa fa-folder-open"></i> <span class="nav-label">工作内容管理</span> <span
+                class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li class="{{ active_class(if_uri_pattern('admin/work')) }}">
+            <a href="{{url('admin/work')}}"><i class="fa fa-envelope"></i> <span class="nav-label">工作内容管理</span></a>
+        </li>
+        <li class="{{ active_class(if_uri_pattern('admin/work/create')) }}">
+            <a href="{{url('admin/work/create')}}"><i class="fa fa-pencil"></i> <span class="nav-label">添加工作计划</span></a>
+        </li>
+    </ul>
+</li>
+
 @permission('user')
     <li class="{{ active_class(if_uri_pattern('admin/user*')) }}">
         <a href="{{url('admin/user')}}"><i class="fa fa-address-card-o"></i> <span class="nav-label">用户管理</span></a>

@@ -72,3 +72,15 @@ Breadcrumbs::register('feedback', function ($breadcrumbs) {
     $breadcrumbs->parent('admin/home');
     $breadcrumbs->push('留言管理', url('admin/feedback'));
 });
+
+// 后台首页/工作管理
+Breadcrumbs::register('work', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin/home');
+    $breadcrumbs->push('工作管理', url('admin/work'));
+});
+
+// 后台首页/工作管理/添加文章
+Breadcrumbs::register('workCreate', function ($breadcrumbs) {
+    $breadcrumbs->parent('work');
+    $breadcrumbs->push('添加工作计划', url('admin/work/create'));
+});

@@ -10,6 +10,10 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('home/images/laozhang_avatar.png')}}" >
 
+    {{-- jeDate --}}
+    <link type="text/css" rel="stylesheet" href="{{asset('admin/js/plugins/jeDate/test/jeDate-test.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{asset('admin/js/plugins/jeDate/skin/jedate.css')}}">
+
     {{-- loading --}}
     <link rel="stylesheet" href="{{asset('admin/js/plugins/loading/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('admin/js/plugins/loading/css/global.css')}}">
@@ -28,12 +32,15 @@
     <link href="{{asset('admin/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
 
+
     <!-- webuploader -->
     <link href="{{asset('admin/js/plugins/webuploader/webuploader.css')}}" rel="stylesheet">
 
     {{--图片预览--}}
     <link href="{{asset('admin/js/plugins/lightbox2/dist/css/lightbox.min.css')}}" rel="stylesheet">
 
+    <!-- bootstrap-datepicker -->
+    <link href="{{asset('admin/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet">
 
     <!-- Mainly scripts -->
     <script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>
@@ -50,6 +57,8 @@
 
     <!-- ztree -->
     <link rel="stylesheet" href="{{asset('admin/css/plugins/text-spinners/spinners.css')}}"  media="all">
+
+
 
     {{--custom--}}
     <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
@@ -319,6 +328,14 @@
 <!-- select2 -->
 <script type="text/javascript" src="{{ asset('admin/js/plugins/select2/js/select2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('admin/js/plugins/select2/js/i18n/zh-CN.js') }}"></script>
+
+<!-- bootstrap-datepicker -->
+<script type="text/javascript" src="{{asset('admin/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/js/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js')}}"></script>
+
+{{-- jeDate --}}
+<script type="text/javascript" src="{{asset('admin/js/plugins/jeDate/src/jedate.js')}}"></script>
+
 
 {{-- loading --}}
 <script src="{{asset('admin/js/plugins/loading/js/loading.js')}}"></script>

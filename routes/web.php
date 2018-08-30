@@ -32,6 +32,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
 
     Route::get('home', 'HomeController@index');
 
+    //工作管理
+    Route::resource('work','WorkController');
+    Route::post('work/start_work','WorkController@start_work')->name('work.start_work');
+    Route::get('work/do_complete_work/{id}','WorkController@do_complete_work');
+    Route::post('work/complete_work','WorkController@complete_work');
+
     //角色管理
     Route::resource('role','RoleController');
     //权限管理
