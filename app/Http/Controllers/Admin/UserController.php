@@ -60,25 +60,23 @@ class UserController extends Controller
         if(no_permission('createUser')){
             return view(config('program.no_permission_to_view'));
         }
-        $arr = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => encrypt($request->password),
-            'status' => $request->status,
-        ];
-        $user_id = User::insertGetId($arr);
 
-        if($user_id){
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->status = $request->status;
+        if($user->save()){
+            $user_info = User::where('email', $request->email)->first();
             if(count($request->role_id) > 0){
                 foreach ($request->role_id as $k=>$v){
                     $arr = [
-                        'user_id' => $user_id,
+                        'user_id' => $user_info->id,
                         'role_id' => $v
                     ];
-                    RoleUser::create($arr);
+                    RoleUser::insert($arr);
                 }
             }
-
             $message = [
                 'code' => 1,
                 'message' => '用户添加成功'
@@ -135,11 +133,14 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+        dd($request->all());
         if(no_permission('editUser')){
             return view(config('program.no_permission_to_view'));
         }
         if($request->password){
-            $arr = $request->except('_token','_method','role_id','repassword');
+            $arr = $request->except('_token','_method','role_id', 'password' ,'repassword');
+            //bcrypt
+            $arr['password'] = bcrypt('password');
         }else{
             $arr = $request->except('_token','_method','role_id','password','repassword');
         }

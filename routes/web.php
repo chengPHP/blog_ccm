@@ -61,9 +61,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
 });
 
 //前台
-
-
-
 Route::group(['namespace'=>'Home'],function (){
     Route::resource('/', 'IndexController');
     Route::get('diary', 'IndexController@diary')->name('diary');
@@ -88,4 +85,78 @@ Route::group(['prefix' => 'file', 'namespace' => 'Admin', 'middleware' => 'auth'
     Route::post('image_upload', 'FileController@imageUpload')->name('image.upload');
     Route::post('file_upload', 'FileController@fileUpload')->name('file.upload');
     Route::post('video_upload', 'FileController@videoUpload')->name('video.upload');
+});
+
+//laravel+vue  api接口
+
+Route::group(['prefix'=>'api','namespace'=>'Api'],function (){
+
+    //登录
+    Route::post('admin/login','LoginController@login');
+    //注册
+    Route::post('admin/register','RegisterController@register');
+    //用户管理
+    //获取用户列表
+    Route::get('user/data_list','UserController@dataList');
+    Route::get('user/role_list','UserController@roleList');
+    //添加用户
+    Route::post('user/add','UserController@add');
+    //获取用户详情信息
+    Route::post('user/info','UserController@info');
+    //修改用户信息
+    Route::post('user/edit','UserController@edit');
+    //删除用户
+    Route::post('user/delete','UserController@delete');
+
+    //类别管理
+    //获取类别列表
+    Route::post('category/data_list','CategoryController@dataList');
+    //添加类别
+    Route::get('category/create','CategoryController@create');
+    Route::post('category/add','CategoryController@add');
+    //获取类别详情信息
+    Route::post('category/info','CategoryController@info');
+    //修改类别信息
+    Route::post('category/edit','CategoryController@edit');
+    //删除类别
+    Route::post('category/delete','CategoryController@delete');
+
+    //文章管理
+    //获取文章列表
+    Route::post('article/data_list','ArticleController@dataList');
+    //添加文章
+    Route::get('article/create','ArticleController@create');
+    Route::post('article/add','ArticleController@add');
+    //获取文章详情信息
+    Route::post('article/info','ArticleController@info');
+    //修改文章信息
+    Route::post('article/edit','ArticleController@edit');
+    //删除文章
+    Route::post('article/delete','ArticleController@delete');
+
+    //导航栏管理
+    //获取导航栏列表
+    Route::post('link/data_list','LinkController@dataList');
+    //添加导航栏
+    Route::post('link/add','LinkController@add');
+    //获取导航栏详情信息
+    Route::post('link/info','LinkController@info');
+    //修改导航栏信息
+    Route::post('link/edit','LinkController@edit');
+    //删除导航栏
+    Route::post('link/delete','LinkController@delete');
+
+    //导航栏管理
+    //获取导航栏列表
+    Route::post('nav/data_list','NavController@dataList');
+    //添加导航栏
+    Route::get('nav/create','NavController@create');
+    Route::post('nav/add','NavController@add');
+    //获取导航栏详情信息
+    Route::post('nav/info','NavController@info');
+    //修改导航栏信息
+    Route::post('nav/edit','NavController@edit');
+    //删除导航栏
+    Route::post('nav/delete','NavController@delete');
+
 });
