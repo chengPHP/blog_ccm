@@ -40,6 +40,14 @@ class NavController extends Controller
      */
     public function add(Request $request)
     {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'create.nav');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr = [
             'name' => $request->name,
             'alias' => $request->alias,
@@ -70,12 +78,22 @@ class NavController extends Controller
         return response()->json($message);
     }
 
-    public function info(Request $request){
+    public function info(Request $request)
+    {
         $info = Nav::where("id",$request->id)->first();
         return response()->json($info);
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'edit.nav');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr = [
             'name' => $request->name,
             'alias' => $request->alias,
@@ -103,7 +121,16 @@ class NavController extends Controller
         return response()->json($message);
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'destroy.nav');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr_id = explode(',',$request->id);
         foreach ($arr_id as $id){
             if(Nav::where('id',$id)->update(['status'=>-1])){

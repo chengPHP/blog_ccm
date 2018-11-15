@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Permission;
+use App\Models\Permission_role;
 use App\Models\Role;
 use App\Models\RoleUser;
 use App\User;
@@ -29,7 +31,8 @@ class UserController extends Controller
         return response()->json($list);
     }
 
-    public function roleList(){
+    public function roleList()
+    {
         $list = Role::where(['status'=>1])->get();
         return $list;
     }
@@ -39,6 +42,14 @@ class UserController extends Controller
      */
     public function add(Request $request)
     {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'create.user');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $user = new User();
         $user->name = $request->name;
         $user->phone = $request->phone;
@@ -71,12 +82,22 @@ class UserController extends Controller
         return response()->json($message);
     }
 
-    public function info(Request $request){
+    public function info(Request $request)
+    {
         $info = User::where("id",$request->id)->first();
         return response()->json($info);
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'edit.user');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr = [
             "name" => $request->name,
             "phone" => $request->phone,
@@ -100,7 +121,16 @@ class UserController extends Controller
         return response()->json($message);
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'destroy.user');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr_id = explode(',',$request->id);
         foreach ($arr_id as $id){
             if(User::where('id',$id)->update(['status'=>-1])){

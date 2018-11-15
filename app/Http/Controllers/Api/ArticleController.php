@@ -38,6 +38,14 @@ class ArticleController extends Controller
      */
     public function add(Request $request)
     {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'create.article');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $category = new Article();
         $category->name = $request->name;
         $category->pid = $request->pid;
@@ -69,6 +77,14 @@ class ArticleController extends Controller
     }
 
     public function edit(Request $request){
+        if($request->user_id){
+            vue_user_permission($request->user_id,'edit.article');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr = [
             "name" => $request->name,
             "pid" => $request->pid,
@@ -88,7 +104,16 @@ class ArticleController extends Controller
         return response()->json($message);
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'destroy.article');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         //把ids字符串拆分成数组
         $idArr = explode(',',$request->id);
         $message = [];

@@ -194,3 +194,31 @@ if(!function_exists("no_permission")){
         }
     }
 }
+
+/*
+ * vue端操作 判断是否有权限
+ */
+
+if(!function_exists("vue_user_permission")){
+    function vue_user_permission($user_id,$permission_name){
+        $role_user_arr = \App\Models\RoleUser::where('user_id',$user_id)->get();
+        $permission_arr = [];
+        foreach ($role_user_arr as $v){
+            $permission_role_arr = \App\Models\Permission_role::where('role_id',$v->role_id)->get();
+            foreach ($permission_role_arr as $value){
+                $permission_arr[] = $value->permission_id;
+            }
+        }
+
+        $permission_name_arr = [];
+        foreach (array_unique($permission_arr) as $v){
+            $permission_name_arr[] = \App\Models\Permission::where('id',$v)->value('name');
+        }
+        if(!in_array($permission_name,$permission_name_arr)){
+            return response()->json([
+                'code' => 0,
+                'message' => '非法操作'
+            ]);
+        }
+    }
+}

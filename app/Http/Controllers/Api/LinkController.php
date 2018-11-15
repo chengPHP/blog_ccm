@@ -31,6 +31,14 @@ class LinkController extends Controller
      */
     public function add(Request $request)
     {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'create.link');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr = [
             'name' => $request->name,
             'title' => $request->title,
@@ -60,7 +68,16 @@ class LinkController extends Controller
         return response()->json($info);
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'edit.link');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr = [
             'name' => $request->name,
             'title' => $request->title,
@@ -82,7 +99,16 @@ class LinkController extends Controller
         return response()->json($message);
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
+        if($request->user_id){
+            vue_user_permission($request->user_id,'destroy.link');
+        }else{
+            return response()->json([
+                'code' => 0,
+                'message' => '抱歉，请先登录'
+            ]);
+        }
         $arr_id = explode(',',$request->id);
         foreach ($arr_id as $id){
             if(Link::where('id',$id)->update(['status'=>-1])){
